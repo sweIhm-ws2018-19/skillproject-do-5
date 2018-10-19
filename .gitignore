@@ -1,6 +1,7 @@
 # Intellij
 .idea/*
 *.iml
+*.xml
 
 # target
 target/*
