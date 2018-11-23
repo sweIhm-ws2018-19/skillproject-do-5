@@ -20,13 +20,39 @@
           "slots": [
             {
               "name": "name",
-              "type": "AMAZON.DE_FIRST_NAME"
+              "type": "AMAZON.DE_FIRST_NAME",
+              "samples": [
+                "{name}"
+              ]
+            },
+            {
+              "name": "age",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "Er ist {age} Jahre alt",
+                "{age}",
+                "{age} Jahre"
+              ]
+            },
+            {
+              "name": "weight",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "Er wiegt {weight} Kilo",
+                "{weight} Kilo",
+                "{weight}"
+              ]
+            },
+            {
+              "name": "gender",
+              "type": "AMAZON.SearchQuery",
+              "samples": [
+                "{gender}"
+              ]
             }
           ],
           "samples": [
-            "Neuen Benuztzer {name} alegen",
-            "Erstelle benutzer {name}",
-            "Neuen Benutzer anlegen {name}"
+            "Erstelle Benutzer"
           ]
         },
         {
@@ -39,6 +65,114 @@
         }
       ],
       "types": []
-    }
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "CreateUserIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "name",
+              "type": "AMAZON.DE_FIRST_NAME",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.913613661293.648590248350"
+              }
+            },
+            {
+              "name": "age",
+              "type": "AMAZON.NUMBER",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.497592017559.169101673027"
+              }
+            },
+            {
+              "name": "weight",
+              "type": "AMAZON.NUMBER",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.497592017559.149654422581"
+              }
+            },
+            {
+              "name": "gender",
+              "type": "AMAZON.SearchQuery",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.497592017559.1533335753055"
+              },
+              "validations": [
+                {
+                  "type": "isInSet",
+                  "prompt": "Slot.Validation.877853770445.1313777031536.365634718717",
+                  "values": [
+                    "männlich",
+                    "weiblich"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.913613661293.648590248350",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Wie ist der Name des neuen Benutzers?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.497592017559.169101673027",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Wie alt ist {name}"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.497592017559.149654422581",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Wie viel wiegt {name} ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.497592017559.1533335753055",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Welches Geschlecht hat {name} ?"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.877853770445.1313777031536.365634718717",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Das ist kein gültige Geschlecht"
+          },
+          {
+            "type": "PlainText",
+            "value": "Bitte sag männlich oder weiblich"
+          }
+        ]
+      }
+    ]
   }
 }
