@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "lieblingsfarbe",
+      "invocationName": "promillerechner",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
@@ -17,10 +17,16 @@
         },
         {
           "name": "CreateUserIntent",
-          "slots": [],
+          "slots": [
+            {
+              "name": "name",
+              "type": "AMAZON.DE_FIRST_NAME"
+            }
+          ],
           "samples": [
-            "Erstelle benutzer",
-            "Neuen Benutzer anlegen"
+            "Neuen Benuztzer {name} alegen",
+            "Erstelle benutzer {name}",
+            "Neuen Benutzer anlegen {name}"
           ]
         },
         {
