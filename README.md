@@ -7,3 +7,4 @@ Der Alexaskill "Promillerechner" soll ermöglichen, dass aus den konsumierten Ge
 ![](https://github.com/sweIhm-ws2018-19/skillproject-do-5/blob/master/sprint%200/Fachklassendiagramm.png)
 
 ---
+
