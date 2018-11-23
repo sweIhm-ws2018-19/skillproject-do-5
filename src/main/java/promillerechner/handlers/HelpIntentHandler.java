@@ -11,29 +11,27 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.colorpicker.handlers;
+package main.java.promillerechner.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
 
 import java.util.Optional;
 
-import static com.amazon.ask.request.Predicates.requestType;
+import static com.amazon.ask.request.Predicates.intentName;
 
-public class LaunchRequestHandler implements RequestHandler {
+public class HelpIntentHandler implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(requestType(LaunchRequest.class));
+        return input.matches(intentName("AMAZON.HelpIntent"));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
         return input.getResponseBuilder()
-                .withSpeech("Hi!")
-                .withSimpleCard("Hi","Hi")
-                .withReprompt("test")
+                .withSpeech("Hier ist nichts.")
+                .withShouldEndSession(false)
                 .build();
     }
 }

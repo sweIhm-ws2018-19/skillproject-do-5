@@ -11,12 +11,12 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.colorpicker;
+package main.java.promillerechner;
 
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
-import main.java.colorpicker.handlers.*;
+import main.java.promillerechner.handlers.*;
 
 public class ColorPickerStreamHandler extends SkillStreamHandler {
 
