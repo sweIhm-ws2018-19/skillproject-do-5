@@ -1,7 +1,9 @@
 package main.java.promillerechner.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.amazon.ask.attributes.AttributesManager;
+import com.amazon.ask.model.Slot;
+
+import java.util.*;
 
 public class User {
     private String name;
@@ -16,6 +18,33 @@ public class User {
         this.sex = sex;
         this.mass = mass;
         this.consumedDrinks = new ArrayList<Drink>();
+    }
+
+    public User(Map<String, Slot> userSlots) {
+        this.name = userSlots.get("name").getValue();
+        this.age = Integer.parseInt(userSlots.get("age").getValue());
+        this.sex = userSlots.get("gender").getValue();
+        this.mass = Integer.parseInt(userSlots.get("weight").getValue());
+        this.consumedDrinks = new ArrayList<Drink>();
+    }
+
+    public Map<String,Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", this.name);
+        map.put("age", this.age);
+        map.put("sex", this.sex);
+        map.put("mass", this.mass);
+        return map;
+    }
+
+    public void persist(AttributesManager attrMan) {
+        Map<String, Object> attributes = attrMan.getPersistentAttributes();
+        attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
+        if (attributes.get("users") instanceof LinkedList) {
+            ((LinkedList) attributes.get("users")).add(this.toMap());
+        }
+        attrMan.setPersistentAttributes(attributes);
+        attrMan.savePersistentAttributes();
     }
 
     public String getName() {

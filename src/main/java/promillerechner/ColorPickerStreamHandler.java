@@ -29,6 +29,8 @@ public class ColorPickerStreamHandler extends SkillStreamHandler {
                         new HelpIntentHandler(),
                         new FallbackIntentHandler(),
                         new CreateUserIntentHandler())
+                .withTableName("promillerechner")
+                .withAutoCreateTable(true)
                 .build();
     }
 

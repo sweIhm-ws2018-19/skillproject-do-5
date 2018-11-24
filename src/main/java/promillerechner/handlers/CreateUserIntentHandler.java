@@ -6,6 +6,7 @@ import com.amazon.ask.model.DialogState;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
+import main.java.promillerechner.model.User;
 
 import java.util.Map;
 import java.util.Optional;
@@ -23,7 +24,9 @@ public class CreateUserIntentHandler implements RequestHandler {
         IntentRequest request = (IntentRequest) handlerInput.getRequestEnvelope().getRequest();
         if (request.getDialogState() == DialogState.COMPLETED) {
 
-            //Map<String, Slot> slots = request.getIntent().getSlots();
+            Map<String, Slot> slots = request.getIntent().getSlots();
+            User user = new User(slots);
+            user.persist(handlerInput.getAttributesManager());
 
             return handlerInput
                     .getResponseBuilder()
