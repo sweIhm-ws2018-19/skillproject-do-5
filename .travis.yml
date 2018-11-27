@@ -6,18 +6,18 @@ install:
   - mvn -N io.takari:maven:wrapper
   - ./mvnw install
 
-deploy:
-  provider: lambda
-  function_name: "skillPromillerechner"
-  region: "us-east-1"
-  role: "arn:aws:iam::457514362535:role/lambda_dynamo"
-  runtime: "java8"
-  handler_name: "main.java.promillerechner.ColorPickerStreamHandler"
+#deploy:
+#  provider: lambda
+#  function_name: "skillPromillerechner"
+#  region: "us-east-1"
+#  role: "arn:aws:iam::457514362535:role/lambda_dynamo"
+#  runtime: "java8"
+#  handler_name: "main.java.promillerechner.ColorPickerStreamHandler"
 
-#addons:
-#  sonarcloud:
-#    organization: "sweihmws2018-19"
+addons:
+  sonarcloud:
+    organization: "sweihmws2018-19"
 
 script:
-#  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pdev sonar:sonar
-  - mvn org.apache.maven.plugins:maven-assembly-plugin:2.6:assembly -DdescriptorId=jar-with-dependencies package
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pdev sonar:sonar
+#  - mvn org.apache.maven.plugins:maven-assembly-plugin:2.6:assembly -DdescriptorId=jar-with-dependencies package
