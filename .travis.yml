@@ -14,9 +14,9 @@ deploy:
   runtime: "java8"
   handler_name: "main.java.promillerechner.ColorPickerStreamHandler"
 
-addons:
-  sonarcloud:
-    organization: "sweihmws2018-19"
+#addons:
+#  sonarcloud:
+#    organization: "sweihmws2018-19"
 
 script:
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pdev sonar:sonar
