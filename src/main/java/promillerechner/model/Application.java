@@ -10,7 +10,7 @@ public class Application {
 
     public Application(Session session) {
         this.users = new ArrayList<>();
-        this.currentSession = session;
+        currentSession = session;
     }
 
     public List<User> getUserlist() {
@@ -37,7 +37,7 @@ public class Application {
         return currentUser;
     }
 
-    public Session getSession() {
+    public Session getCurrentSession() {
         return currentSession;
     }
 

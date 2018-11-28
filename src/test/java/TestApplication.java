@@ -18,7 +18,7 @@ public class TestApplication {
         testApplication.addUser(testUser1);
         testApplication.pickUser(testUser1);
         assertEquals(testApplication.getCurrentUser(), testUser1);
-        assertEquals(testApplication.getSession().getSessionId(), 1);
+        assertEquals(testApplication.getCurrentSession().getSessionId(), 1);
         assertEquals(testApplication.getUserlist().get(0), testUser1);
     }
 
