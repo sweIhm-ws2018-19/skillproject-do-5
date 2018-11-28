@@ -29,8 +29,10 @@ public class HelpIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+        String alexaHelpSpeech = "Willkommen im Hilfemenü. Hilfe ist unterwegs.";
         return input.getResponseBuilder()
-                .withSpeech("Hier ist nichts.")
+                .withSimpleCard("Hilfemenü", alexaHelpSpeech)
+                .withSpeech(alexaHelpSpeech)
                 .withShouldEndSession(false)
                 .build();
     }
