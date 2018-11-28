@@ -63,6 +63,8 @@ public class User {
         return mass;
     }
 
+    public List<Drink> getConsumedDrinks() { return consumedDrinks; }
+
     public void addDrink(Drink drink) {
         consumedDrinks.add(drink);
     }

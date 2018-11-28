@@ -1,5 +1,6 @@
 package main.java.promillerechner.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -7,7 +8,9 @@ public class Application {
     private User currentUser;
     private Session currentSession;
 
-    public Application() {
+    public Application(Session session) {
+        this.users = new ArrayList<>();
+        this.currentSession = session;
     }
 
     public List<User> getUserlist() {
@@ -21,21 +24,25 @@ public class Application {
     }
 
     public void deleteUser(User user) {
-        if (users.contains(user)) {
             users.remove(user);
-        }
     }
 
     public void pickUser(User user) {
-        currentUser = user;
+        if (users.contains(user)) {
+            currentUser = user;
+        }
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
     }
 
     public Session getSession() {
         return currentSession;
     }
 
-    public void addDrink(User user, Drink drink) {
-        user.addDrink(drink);
+    public void addDrink(Drink drink) {
+        currentUser.addDrink(drink);
     }
 
     public double interrogatePromillevalue(User user) {
