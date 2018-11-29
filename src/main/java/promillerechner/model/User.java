@@ -40,9 +40,7 @@ public class User {
     public void persist(AttributesManager attrMan) {
         Map<String, Object> attributes = attrMan.getPersistentAttributes();
         attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
-        if (attributes.get("users") instanceof LinkedList) {
-            ((LinkedList) attributes.get("users")).add(this.toMap());
-        }
+        ((List) attributes.get("users")).add(this.toMap());
         attrMan.setPersistentAttributes(attributes);
         attrMan.savePersistentAttributes();
     }
