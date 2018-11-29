@@ -30,10 +30,14 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+        String alexaSpeechText = "Hallo, du Säufer. Willkommen beim Promillerechner. Mit diesem Skill kannst du ein Profil anlegen und " +
+                "anschließend die alkoholischen Getränke eingeben, die du getrunken hast.";
+        String alexaRepromtText = "Wenn du ein Profil anlegen möchtest, sag mir bitte: Ich möchte ein Profil anlegen";
+
         return input.getResponseBuilder()
-                .withSpeech("Hi!")
-                .withSimpleCard("Hi","Hi")
-                .withReprompt("test")
+                .withSimpleCard("Begrüßung", alexaSpeechText)
+                .withSpeech(alexaSpeechText)
+                .withReprompt(alexaRepromtText)
                 .build();
     }
 }
