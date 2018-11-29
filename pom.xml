@@ -119,8 +119,6 @@
   </dependencies>
 
   <build>
-      <!-- vieleicht raus
-    <sourceDirectory>src</sourceDirectory> -->
     <pluginManagement>
       <plugins>
         <plugin>
