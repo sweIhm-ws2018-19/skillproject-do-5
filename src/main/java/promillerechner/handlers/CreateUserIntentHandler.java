@@ -29,7 +29,7 @@ public class CreateUserIntentHandler implements RequestHandler {
 
         IntentRequest request = (IntentRequest) handlerInput.getRequestEnvelope().getRequest();
 
-        boolean hasName = false;
+        /*boolean hasName = false;
             do {
                 try {
                     Thread.sleep(100);
@@ -46,7 +46,7 @@ public class CreateUserIntentHandler implements RequestHandler {
             } while (!hasName
 //                    && request.getDialogState() == DialogState.IN_PROGRESS
             );
-
+        */
         if (request.getDialogState() == DialogState.COMPLETED) {
 
             Map<String, Slot> slots = request.getIntent().getSlots();
