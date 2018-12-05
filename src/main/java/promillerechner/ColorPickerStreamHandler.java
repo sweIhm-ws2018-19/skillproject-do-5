@@ -16,7 +16,8 @@ package main.java.promillerechner;
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
-import main.java.promillerechner.handlers.*;
+import main.java.promillerechner.handlers;
+import promillerechner.Constants;
 
 public class ColorPickerStreamHandler extends SkillStreamHandler {
 
@@ -29,7 +30,7 @@ public class ColorPickerStreamHandler extends SkillStreamHandler {
                         new HelpIntentHandler(),
                         new FallbackIntentHandler(),
                         new CreateUserIntentHandler())
-                .withTableName("promillerechner")
+                .withTableName(Constants.USER_TABLE)
                 .withAutoCreateTable(true)
                 .build();
     }
