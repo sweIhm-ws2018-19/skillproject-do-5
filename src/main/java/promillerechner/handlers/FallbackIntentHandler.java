@@ -3,6 +3,7 @@ package main.java.promillerechner.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import promillerechner.Constants;
 
 import java.util.Optional;
 
@@ -15,15 +16,14 @@ public class FallbackIntentHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.FallbackIntent"));
+        return input.matches(intentName(Constants.INTENT_FALLBACK));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Tut mir leid, das weiss ich nicht. Sage einfach Hilfe.";
         return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withReprompt(speechText)
+                .withSpeech(Constants.UNKNOWN_QUERY)
+                .withReprompt(Constants.UNKNOWN_QUERY)
                 .build();
     }
 

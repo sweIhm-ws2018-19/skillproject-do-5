@@ -17,6 +17,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
+import promillerechner.Constants;
 
 import java.util.Optional;
 
@@ -30,14 +31,11 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String alexaSpeechText = "Hallo, du Säufer. Willkommen beim Promillerechner. Mit diesem Skill kannst du ein Profil anlegen und " +
-                "anschließend die alkoholischen Getränke eingeben, die du getrunken hast.";
-        String alexaRepromtText = "Wenn du ein Profil anlegen möchtest, sag mir bitte: Ich möchte ein Profil anlegen";
 
         return input.getResponseBuilder()
-                .withSimpleCard("Begrüßung", alexaSpeechText)
-                .withSpeech(alexaSpeechText)
-                .withReprompt(alexaRepromtText)
+                .withSimpleCard(Constants.CARD_GREETING, Constants.GREETING)
+                .withSpeech(Constants.GREETING)
+                .withReprompt(Constants.GREETING_REPROMT)
                 .build();
     }
 }

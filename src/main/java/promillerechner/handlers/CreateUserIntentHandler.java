@@ -8,6 +8,7 @@ import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 import main.java.promillerechner.model.User;
+import promillerechner.Constants;
 
 import java.util.Map;
 import java.util.Optional;
@@ -17,7 +18,7 @@ import static com.amazon.ask.request.Predicates.intentName;
 public class CreateUserIntentHandler implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
-        return handlerInput.matches(intentName("CreateUserIntent"));
+        return handlerInput.matches(intentName(Constants.INTENT_ADD_USER));
     }
 
     @Override
@@ -36,11 +37,11 @@ public class CreateUserIntentHandler implements RequestHandler {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                hasName = request.getIntent().getSlots().containsKey("name");
-                if (hasName && persistentAttributes.containsValue(request.getIntent().getSlots().get("name"))) {
+                hasName = request.getIntent().getSlots().containsKey(Constants.KEY_ADD_USER);
+                if (hasName && persistentAttributes.containsValue(request.getIntent().getSlots().get(Constants.KEY_ADD_USER))) {
                     return handlerInput
                             .getResponseBuilder()
-                            .withSpeech("Es gibt bereits ein gleichnamiges Profil.")
+                            .withSpeech(Constants.ADD_USER_ERROR)
                             .build();
                 }
             } while (!hasName
@@ -55,7 +56,7 @@ public class CreateUserIntentHandler implements RequestHandler {
 
             return handlerInput
                     .getResponseBuilder()
-                    .withSpeech("Ok, ich habe den Benutzer angelegt.")
+                    .withSpeech(Constants.ADD_USER_TEXT)
                     .build();
         } else {
             return handlerInput

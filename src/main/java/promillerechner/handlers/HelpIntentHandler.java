@@ -16,6 +16,7 @@ package main.java.promillerechner.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import promillerechner.Constants;
 
 import java.util.Optional;
 
@@ -24,15 +25,14 @@ import static com.amazon.ask.request.Predicates.intentName;
 public class HelpIntentHandler implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.HelpIntent"));
+        return input.matches(intentName(Constants.INTENT_HELP));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String alexaHelpSpeech = "Willkommen im Hilfemenü. Hilfe ist unterwegs.";
         return input.getResponseBuilder()
-                .withSimpleCard("Hilfemenü", alexaHelpSpeech)
-                .withSpeech(alexaHelpSpeech)
+                .withSimpleCard(Constants.CARD_HELP, Constants.HELP)
+                .withSpeech(Constants.HELP)
                 .withShouldEndSession(false)
                 .build();
     }
