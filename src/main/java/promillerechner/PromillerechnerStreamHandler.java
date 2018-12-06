@@ -18,7 +18,7 @@ import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
 import promillerechner.handlers.*;
 
-public class ColorPickerStreamHandler extends SkillStreamHandler {
+public class PromillerechnerStreamHandler extends SkillStreamHandler {
 
     private static Skill getSkill() {
         return Skills.standard()
@@ -35,7 +35,7 @@ public class ColorPickerStreamHandler extends SkillStreamHandler {
                 .build();
     }
 
-    public ColorPickerStreamHandler() {
+    public PromillerechnerStreamHandler() {
         super(getSkill());
     }
 

@@ -25,8 +25,6 @@ public class RemoveUserIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput handlerInput) {
 
         AttributesManager attributesManager = handlerInput.getAttributesManager();
-        Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
-
 
         IntentRequest request = (IntentRequest) handlerInput.getRequestEnvelope().getRequest();
 
@@ -34,13 +32,20 @@ public class RemoveUserIntentHandler implements RequestHandler {
 
             Map<String, Slot> slots = request.getIntent().getSlots();
             String name = slots.get("name").getValue();
-            User user = new User(slots);
-            user.remove(attributesManager, name);
+            User user = new User(name, 0, null, 0);
+            boolean contains = user.remove(attributesManager, name);
 
-            return handlerInput
-                    .getResponseBuilder()
-                    .withSpeech(Constants.ADD_USER_TEXT)
-                    .build();
+            if (contains) {
+                return handlerInput
+                        .getResponseBuilder()
+                        .withSpeech(Constants.REMOVE_USER_TEXT)
+                        .build();
+            } else {
+                return handlerInput
+                        .getResponseBuilder()
+                        .withSpeech(Constants.REMOVE_USER_ERROR)
+                        .build();
+            }
         } else {
             return handlerInput
                     .getResponseBuilder()

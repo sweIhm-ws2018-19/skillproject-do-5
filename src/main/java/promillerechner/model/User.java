@@ -3,6 +3,7 @@ package promillerechner.model;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -46,20 +47,22 @@ public class User {
         attrMan.savePersistentAttributes();
     }
 
-    public void remove(AttributesManager attrMan, String name) {
+    public boolean remove(AttributesManager attrMan, String name) {
+        boolean toReturn = false;
         Map<String, Object> attributes = attrMan.getPersistentAttributes();
         attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
-        User toRemove = getUserByName(((List) attributes.get("users")), name);
+        Map<String, Object> toRemove = getUserByName(((List) attributes.get("users")), name);
         if (toRemove != null) {
-            ((List) attributes.get("users")).remove(toRemove);
+            toReturn = ((List) attributes.get("users")).remove(toRemove);
         }
         attrMan.setPersistentAttributes(attributes);
         attrMan.savePersistentAttributes();
+        return toReturn;
     }
 
-    private User getUserByName(List<User> users, String name) {
-        for (User el: users) {
-            if (el.getName().equals(name)) {
+    private Map<String, Object> getUserByName(List<Map<String, Object>> users, String name) {
+        for (Map el: users) {
+            if (el.get("name").equals(name)) {
                 return el;
             }
         }

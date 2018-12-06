@@ -23,6 +23,8 @@ public class Constants {
     //Speech
     public static final String ADD_USER_TEXT = "Ok, ich habe den Benutzer angelegt.";
     public static final String ADD_USER_ERROR = "Es gibt bereits ein gleichnamiges Profil.";
+    public static final String REMOVE_USER_TEXT = "Der Nutzer wurde erfolgreich entfernt.";
+    public static final String REMOVE_USER_ERROR = "Nutzer ist nicht vorhanden!";
     public static final String UNKNOWN_QUERY = "Tut mir leid, das weiss ich nicht. Sage einfach Hilfe.";
     public static final String HELP = "Willkommen im Hilfemenü. Hilfe ist unterwegs.";
     public static final String GREETING = "Hallo, du Säufer. Willkommen beim Promillerechner. Mit diesem Skill kannst du ein Profil anlegen und " +
