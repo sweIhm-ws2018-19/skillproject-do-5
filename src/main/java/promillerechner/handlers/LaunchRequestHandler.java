@@ -11,7 +11,7 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.promillerechner.handlers;
+package promillerechner.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
