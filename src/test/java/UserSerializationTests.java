@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-import com.amazon.ask.model.Slot;
-import promillerechner.model.User;
-=======
 
 import com.amazon.ask.model.Slot;
->>>>>>> 5aa71bc782641141d282eee692a4d265c9ed4d1f
+import promillerechner.model.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-import promillerechner.model.User;
 
 import java.util.HashMap;
 import java.util.Map;

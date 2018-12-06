@@ -25,7 +25,6 @@ public class RemoveUserIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput handlerInput) {
 
         AttributesManager attributesManager = handlerInput.getAttributesManager();
-
         IntentRequest request = (IntentRequest) handlerInput.getRequestEnvelope().getRequest();
 
         if (request.getDialogState() == DialogState.COMPLETED) {
