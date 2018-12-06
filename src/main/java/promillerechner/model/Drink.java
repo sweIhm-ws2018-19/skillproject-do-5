@@ -1,7 +1,6 @@
 package promillerechner.model;
 
 import com.amazon.ask.attributes.AttributesManager;
-import com.sun.istack.internal.Nullable;
 
 import java.util.HashMap;
 import java.util.LinkedList;
