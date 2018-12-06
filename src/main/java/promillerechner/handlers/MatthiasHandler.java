@@ -10,11 +10,11 @@ public class MatthiasHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
-        return false; //No one can handle Matthias!!!
+        return false; //No one can handle Matthias!!! :D
     }
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-        return Optional.empty();
+        return Optional.empty(); //Matthias cant handle this!!! :D
     }
 }
