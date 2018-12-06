@@ -46,7 +46,7 @@ public enum Drink{
      * @param container
      * @return [Map<String,Object>]
      */
-    public Map<String, Object> serialize(@Nullable Container container) {
+    public Map<String, Object> serialize(Container container) {
         Map<String, Object> map = new HashMap<>();
         map.put("name", this.name());
         map.put("container", container == null ?
@@ -60,7 +60,7 @@ public enum Drink{
      * @param container Container or null (use default)
      * TODO: Save user specific
      */
-    public void persist(AttributesManager attrMan, @Nullable Container container) {
+    public void persist(AttributesManager attrMan, Container container) {
         Map<String, Object> attributes = attrMan.getPersistentAttributes();
         attributes.putIfAbsent("drinks", new LinkedList<Map<String, Object>>());
         ((List) attributes.get("drink")).add(this.serialize(container));
