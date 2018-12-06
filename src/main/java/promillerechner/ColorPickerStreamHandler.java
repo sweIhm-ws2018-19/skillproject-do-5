@@ -16,7 +16,12 @@ package main.java.promillerechner;
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
-import main.java.promillerechner.handlers;
+import main.java.promillerechner.handlers.LaunchRequestHandler;
+import main.java.promillerechner.handlers.CancelandStopIntentHandler;
+import main.java.promillerechner.handlers.SessionEndedRequestHandler;
+import main.java.promillerechner.handlers.HelpIntentHandler;
+import main.java.promillerechner.handlers.FallbackIntentHandler;
+import main.java.promillerechner.handlers.CreateUserIntentHandler;
 import promillerechner.Constants;
 
 public class ColorPickerStreamHandler extends SkillStreamHandler {
