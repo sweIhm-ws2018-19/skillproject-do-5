@@ -1,7 +1,4 @@
-package test.java;
-
-import main.java.promillerechner.model.Drink;
-import main.java.promillerechner.model.User;
+import promillerechner.model.*;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 

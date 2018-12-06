@@ -1,4 +1,4 @@
-package main.java.promillerechner.model;
+package promillerechner.model;
 
 
 import promillerechner.model.Container;

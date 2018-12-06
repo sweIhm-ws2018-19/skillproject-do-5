@@ -1,9 +1,11 @@
-package main.java.promillerechner.model;
+package promillerechner.model;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 
+import java.math.BigDecimal;
 import java.util.*;
+import java.util.function.Predicate;
 
 public class User {
     private String name;
@@ -43,6 +45,28 @@ public class User {
         ((List) attributes.get("users")).add(this.toMap());
         attrMan.setPersistentAttributes(attributes);
         attrMan.savePersistentAttributes();
+    }
+
+    public boolean remove(AttributesManager attrMan, String name) {
+        boolean toReturn = false;
+        Map<String, Object> attributes = attrMan.getPersistentAttributes();
+        attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
+        Map<String, Object> toRemove = getUserByName(((List) attributes.get("users")), name);
+        if (toRemove != null) {
+            toReturn = ((List) attributes.get("users")).remove(toRemove);
+        }
+        attrMan.setPersistentAttributes(attributes);
+        attrMan.savePersistentAttributes();
+        return toReturn;
+    }
+
+    private Map<String, Object> getUserByName(List<Map<String, Object>> users, String name) {
+        for (Map el: users) {
+            if (el.get("name").equals(name)) {
+                return el;
+            }
+        }
+        return null;
     }
 
     public String getName() {
