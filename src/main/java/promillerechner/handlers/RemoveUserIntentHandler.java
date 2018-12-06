@@ -15,7 +15,7 @@ import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-public class CreateUserIntentHandler implements RequestHandler {
+public class RemoveUserIntentHandler implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         return handlerInput.matches(intentName(Constants.INTENT_ADD_USER));
@@ -30,24 +30,6 @@ public class CreateUserIntentHandler implements RequestHandler {
 
         IntentRequest request = (IntentRequest) handlerInput.getRequestEnvelope().getRequest();
 
-        /*boolean hasName = false;
-            do {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                hasName = request.getIntent().getSlots().containsKey(Constants.KEY_ADD_USER);
-                if (hasName && persistentAttributes.containsValue(request.getIntent().getSlots().get(Constants.KEY_ADD_USER))) {
-                    return handlerInput
-                            .getResponseBuilder()
-                            .withSpeech(Constants.ADD_USER_ERROR)
-                            .build();
-                }
-            } while (!hasName
-//                    && request.getDialogState() == DialogState.IN_PROGRESS
-            );
-        */
         if (request.getDialogState() == DialogState.COMPLETED) {
 
             Map<String, Slot> slots = request.getIntent().getSlots();

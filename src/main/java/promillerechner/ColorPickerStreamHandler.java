@@ -11,19 +11,12 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.promillerechner;
+package promillerechner;
 
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
-import main.java.promillerechner.handlers.LaunchRequestHandler;
-import main.java.promillerechner.handlers.CancelandStopIntentHandler;
-import main.java.promillerechner.handlers.SessionEndedRequestHandler;
-import main.java.promillerechner.handlers.HelpIntentHandler;
-import main.java.promillerechner.handlers.FallbackIntentHandler;
-import main.java.promillerechner.handlers.CreateUserIntentHandler;
-import promillerechner.Constants;
-
+import promillerechner.handlers.*;
 public class ColorPickerStreamHandler extends SkillStreamHandler {
 
     private static Skill getSkill() {
@@ -34,7 +27,8 @@ public class ColorPickerStreamHandler extends SkillStreamHandler {
                         new SessionEndedRequestHandler(),
                         new HelpIntentHandler(),
                         new FallbackIntentHandler(),
-                        new CreateUserIntentHandler())
+                        new CreateUserIntentHandler(),
+                        new RemoveUserIntentHandler())
                 .withTableName(Constants.USER_TABLE)
                 .withAutoCreateTable(true)
                 .build();
