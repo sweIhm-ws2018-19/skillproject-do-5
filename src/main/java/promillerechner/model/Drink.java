@@ -1,9 +1,10 @@
 package promillerechner.model;
 
-
-import promillerechner.model.Container;
+import com.amazon.ask.attributes.AttributesManager;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public enum Drink{
@@ -39,10 +40,30 @@ public enum Drink{
         return defaultContainer;
     }
 
-    public Map<String, Object> serialize() {
+    /**
+     * Generate map to make saving easy
+     * @param container
+     * @return [Map<String,Object>]
+     */
+    public Map<String, Object> serialize(Container container) {
         Map<String, Object> map = new HashMap<>();
-        map.put("name", this.name);
-        map.put("alcoholContent", this.alcoholContent);
+        map.put("name", this.name());
+        map.put("container", container == null ?
+                this.getDefaultContainer().name() : container.name());
         return map;
+    }
+
+    /**
+     * Saves drink (in given container) to the database
+     * @param attrMan Attributes manager
+     * @param container Container or null (use default)
+     * TODO: Save user specific
+     */
+    public void persist(AttributesManager attrMan, Container container) {
+        Map<String, Object> attributes = attrMan.getPersistentAttributes();
+        attributes.putIfAbsent("drinks", new LinkedList<Map<String, Object>>());
+        ((List) attributes.get("drink")).add(this.serialize(container));
+        attrMan.setPersistentAttributes(attributes);
+        attrMan.savePersistentAttributes();
     }
 }

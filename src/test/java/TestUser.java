@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 import promillerechner.model.*;
 import static org.junit.jupiter.api.Assertions.*;
+=======
+>>>>>>> 5aa71bc782641141d282eee692a4d265c9ed4d1f
 import org.junit.jupiter.api.Test;
+import promillerechner.model.User;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestUser {
 

@@ -12,6 +12,7 @@ public class Constants {
     public static final String INTENT_HELP = "AMAZON.HelpIntent";
     public static final String INTENT_ADD_USER = "CreateUserIntent";
     public static final String INTENT_REMOVE_USER = "RemoveUserIntent";
+    public static final String INTENT_ADD_DRINK = "AddDrinkIntent";
 
     //Keys
     public static final String KEY_ADD_USER = "name";

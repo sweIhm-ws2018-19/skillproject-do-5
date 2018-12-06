@@ -36,11 +36,5 @@ public enum Container {
         this.size = size;
     }
 
-    public Map<String, Object> serialize() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", this.name);
-        map.put("size", this.size);
-        return map;
-    }
 }
 
