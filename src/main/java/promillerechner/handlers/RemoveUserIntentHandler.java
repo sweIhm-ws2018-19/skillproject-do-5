@@ -7,7 +7,7 @@ import com.amazon.ask.model.DialogState;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
-import main.java.promillerechner.model.User;
+import promillerechner.model.User;
 import promillerechner.Constants;
 
 import java.util.Map;
@@ -18,7 +18,7 @@ import static com.amazon.ask.request.Predicates.intentName;
 public class RemoveUserIntentHandler implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
-        return handlerInput.matches(intentName(Constants.INTENT_ADD_USER));
+        return handlerInput.matches(intentName(Constants.INTENT_REMOVE_USER));
     }
 
     @Override
@@ -33,8 +33,9 @@ public class RemoveUserIntentHandler implements RequestHandler {
         if (request.getDialogState() == DialogState.COMPLETED) {
 
             Map<String, Slot> slots = request.getIntent().getSlots();
+            String name = slots.get("name").getValue();
             User user = new User(slots);
-            user.persist(handlerInput.getAttributesManager());
+            user.remove(attributesManager, name);
 
             return handlerInput
                     .getResponseBuilder()

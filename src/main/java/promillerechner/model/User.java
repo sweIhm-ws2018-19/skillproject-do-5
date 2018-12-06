@@ -1,9 +1,10 @@
-package main.java.promillerechner.model;
+package promillerechner.model;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 public class User {
     private String name;
@@ -43,6 +44,26 @@ public class User {
         ((List) attributes.get("users")).add(this.toMap());
         attrMan.setPersistentAttributes(attributes);
         attrMan.savePersistentAttributes();
+    }
+
+    public void remove(AttributesManager attrMan, String name) {
+        Map<String, Object> attributes = attrMan.getPersistentAttributes();
+        attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
+        User toRemove = getUserByName(((List) attributes.get("users")), name);
+        if (toRemove != null) {
+            ((List) attributes.get("users")).remove(toRemove);
+        }
+        attrMan.setPersistentAttributes(attributes);
+        attrMan.savePersistentAttributes();
+    }
+
+    private User getUserByName(List<User> users, String name) {
+        for (User el: users) {
+            if (el.getName().equals(name)) {
+                return el;
+            }
+        }
+        return null;
     }
 
     public String getName() {
