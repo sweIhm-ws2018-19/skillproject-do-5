@@ -1,7 +1,4 @@
-package main.java.promillerechner.model;
-
-
-import promillerechner.model.Container;
+package promillerechner.model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,10 +36,11 @@ public enum Drink{
         return defaultContainer;
     }
 
-    public Map<String, Object> serialize() {
+    public Map<String, Object> serialize(Container container) {
         Map<String, Object> map = new HashMap<>();
-        map.put("name", this.name);
-        map.put("alcoholContent", this.alcoholContent);
+        map.put("name", this.name());
+        map.put("container", container == null ?
+                this.getDefaultContainer().name() : container.name());
         return map;
     }
 }

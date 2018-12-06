@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import main.java.promillerechner.model.Drink;
+import promillerechner.model.Drink;
 import promillerechner.model.Container;
 
 import java.util.HashMap;
@@ -24,9 +24,9 @@ public class DrinkTest {
     @Test()
     public void testSerialize() {
         HashMap<String, Object> should = new HashMap<>();
-        should.put("name", "Wein");
-        should.put("alcoholContent", 10);
-        Assertions.assertEquals(should, Drink.WEIN.serialize());
+        should.put("name", "WEIN");
+        should.put("container", "GLAS");
+        Assertions.assertEquals(should, Drink.WEIN.serialize(null));
     }
 
 

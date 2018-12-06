@@ -7,8 +7,8 @@ import com.amazon.ask.model.DialogState;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
-import main.java.promillerechner.model.User;
 import promillerechner.Constants;
+import promillerechner.model.User;
 
 import java.util.Map;
 import java.util.Optional;

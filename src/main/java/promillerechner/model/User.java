@@ -1,4 +1,4 @@
-package main.java.promillerechner.model;
+package promillerechner.model;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
