@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import main.java.promillerechner.model.Drink;
+import promillerechner.model.Drink;
 import promillerechner.model.Container;
 
 import java.util.HashMap;

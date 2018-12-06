@@ -1,7 +1,5 @@
-package test.java;
-
 import com.amazon.ask.model.Slot;
-import main.java.promillerechner.model.User;
+import promillerechner.model.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
