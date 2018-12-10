@@ -2,10 +2,7 @@ package promillerechner.model;
 
 import com.amazon.ask.attributes.AttributesManager;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public enum Drink{
 
@@ -48,6 +45,7 @@ public enum Drink{
     public Map<String, Object> serialize(Container container, String user) {
         Map<String, Object> map = new HashMap<>();
         map.put("name", this.name());
+        map.put("date", new Date().toString());
         map.put("user", user);
         map.put("container", container == null ?
                 this.getDefaultContainer().name() : container.name());
@@ -63,7 +61,7 @@ public enum Drink{
     public void persist(AttributesManager attrMan, Container container) {
         Map<String, Object> attributes = attrMan.getPersistentAttributes();
         attributes.putIfAbsent("drinks", new LinkedList<Map<String, Object>>());
-        ((List) attributes.get("drink")).add(this.serialize(container, User.getCurrentUser(attrMan)));
+        ((List) attributes.get("drinks")).add(this.serialize(container, User.getCurrentUser(attrMan)));
         attrMan.setPersistentAttributes(attributes);
         attrMan.savePersistentAttributes();
     }
