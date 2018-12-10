@@ -25,39 +25,25 @@ public class CreateUserIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput handlerInput) {
 
         AttributesManager attributesManager = handlerInput.getAttributesManager();
-        Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
-
 
         IntentRequest request = (IntentRequest) handlerInput.getRequestEnvelope().getRequest();
 
-        /*boolean hasName = false;
-            do {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                hasName = request.getIntent().getSlots().containsKey(Constants.KEY_ADD_USER);
-                if (hasName && persistentAttributes.containsValue(request.getIntent().getSlots().get(Constants.KEY_ADD_USER))) {
-                    return handlerInput
-                            .getResponseBuilder()
-                            .withSpeech(Constants.ADD_USER_ERROR)
-                            .build();
-                }
-            } while (!hasName
-//                    && request.getDialogState() == DialogState.IN_PROGRESS
-            );
-        */
         if (request.getDialogState() == DialogState.COMPLETED) {
 
             Map<String, Slot> slots = request.getIntent().getSlots();
             User user = new User(slots);
-            user.persist(handlerInput.getAttributesManager());
-
-            return handlerInput
-                    .getResponseBuilder()
-                    .withSpeech(Constants.ADD_USER_TEXT)
-                    .build();
+            boolean contains = user.persist(attributesManager);
+            if (!contains) {
+                return handlerInput
+                        .getResponseBuilder()
+                        .withSpeech(Constants.ADD_USER_TEXT)
+                        .build();
+            } else {
+                return handlerInput
+                        .getResponseBuilder()
+                        .withSpeech(Constants.ADD_USER_ERROR)
+                        .build();
+            }
         } else {
             return handlerInput
                     .getResponseBuilder()

@@ -39,12 +39,26 @@ public class User {
         return map;
     }
 
-    public void persist(AttributesManager attrMan) {
+    public boolean persist(AttributesManager attrMan) {
+        boolean contains = false;
         Map<String, Object> attributes = attrMan.getPersistentAttributes();
-        attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
-        ((List) attributes.get("users")).add(this.toMap());
+        contains = containsUser(((List) attributes.get("users")), this);
+        if (!contains) {
+            attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
+            ((List) attributes.get("users")).add(this.toMap());
+        }
         attrMan.setPersistentAttributes(attributes);
         attrMan.savePersistentAttributes();
+        return contains;
+    }
+
+    private boolean containsUser(List<Map<String, Object>> users, User user) {
+        for (Map el: users) {
+            if (el.get("name").equals(user.getName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean remove(AttributesManager attrMan, String name) {
