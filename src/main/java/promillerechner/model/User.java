@@ -3,7 +3,9 @@ package promillerechner.model;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 
+import java.math.BigDecimal;
 import java.util.*;
+import java.util.function.Predicate;
 
 public class User {
     private String name;
@@ -37,12 +39,62 @@ public class User {
         return map;
     }
 
-    public void persist(AttributesManager attrMan) {
+    public boolean persist(AttributesManager attrMan) {
+        boolean contains = false;
         Map<String, Object> attributes = attrMan.getPersistentAttributes();
-        attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
-        ((List) attributes.get("users")).add(this.toMap());
+        contains = containsUser(((List) attributes.get("users")), this);
+        if (!contains) {
+            attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
+            ((List) attributes.get("users")).add(this.toMap());
+        }
         attrMan.setPersistentAttributes(attributes);
         attrMan.savePersistentAttributes();
+        return contains;
+    }
+
+    private boolean containsUser(List<Map<String, Object>> users, User user) {
+        for (Map el: users) {
+            if (el.get("name").equals(user.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean remove(AttributesManager attrMan, String name) {
+        boolean toReturn = false;
+        Map<String, Object> attributes = attrMan.getPersistentAttributes();
+        attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
+        Map<String, Object> toRemove = getUserByName(((List) attributes.get("users")), name);
+        if (toRemove != null) {
+            toReturn = ((List) attributes.get("users")).remove(toRemove);
+        }
+        attrMan.setPersistentAttributes(attributes);
+        attrMan.savePersistentAttributes();
+        return toReturn;
+    }
+
+    public boolean selectUser(AttributesManager attrMan, String name) {
+        boolean toReturn = false;
+        Map<String, Object> attributes = attrMan.getPersistentAttributes();
+        attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
+        Map<String, Object> currentUser = getUserByName(((List) attributes.get("users")), name);
+        if (currentUser != null) {
+            attributes.put("currentUser", currentUser);
+            toReturn = true;
+        }
+        attrMan.setPersistentAttributes(attributes);
+        attrMan.savePersistentAttributes();
+        return toReturn;
+    }
+
+    private Map<String, Object> getUserByName(List<Map<String, Object>> users, String name) {
+        for (Map el: users) {
+            if (el.get("name").equals(name)) {
+                return el;
+            }
+        }
+        return null;
     }
 
     public boolean selectUser(AttributesManager attrMan, String name) {

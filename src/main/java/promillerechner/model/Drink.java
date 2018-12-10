@@ -1,7 +1,6 @@
 package promillerechner.model;
 
 import com.amazon.ask.attributes.AttributesManager;
-import com.sun.istack.internal.Nullable;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -61,7 +60,7 @@ public enum Drink{
      * @param container Container or null (use default)
      * TODO: Save user specific
      */
-    public void persist(AttributesManager attrMan, @Nullable Container container) {
+    public void persist(AttributesManager attrMan, Container container) {
         Map<String, Object> attributes = attrMan.getPersistentAttributes();
         attributes.putIfAbsent("drinks", new LinkedList<Map<String, Object>>());
         ((List) attributes.get("drink")).add(this.serialize(container, User.getCurrentUser(attrMan)));
