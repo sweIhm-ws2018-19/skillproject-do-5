@@ -60,6 +60,20 @@ public class User {
         return toReturn;
     }
 
+    public boolean selectUser(AttributesManager attrMan, String name) {
+        boolean toReturn = false;
+        Map<String, Object> attributes = attrMan.getPersistentAttributes();
+        attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
+        Map<String, Object> currentUser = getUserByName(((List) attributes.get("users")), name);
+        if (currentUser != null) {
+            attributes.put("currentUser", currentUser);
+            toReturn = true;
+        }
+        attrMan.setPersistentAttributes(attributes);
+        attrMan.savePersistentAttributes();
+        return toReturn;
+    }
+
     private Map<String, Object> getUserByName(List<Map<String, Object>> users, String name) {
         for (Map el: users) {
             if (el.get("name").equals(name)) {

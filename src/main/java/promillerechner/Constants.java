@@ -13,6 +13,7 @@ public class Constants {
     public static final String INTENT_ADD_USER = "CreateUserIntent";
     public static final String INTENT_REMOVE_USER = "RemoveUserIntent";
     public static final String INTENT_ADD_DRINK = "AddDrinkIntent";
+    public static final String INTENT_SELECT_USER = "SelectUserIntent";
 
     //Keys
     public static final String KEY_ADD_USER = "name";
@@ -31,6 +32,8 @@ public class Constants {
     public static final String GREETING = "Hallo, du Säufer. Willkommen beim Promillerechner. Mit diesem Skill kannst du ein Profil anlegen und " +
             "anschließend die alkoholischen Getränke eingeben, die du getrunken hast.";
     public static final String GREETING_REPROMT = "Wenn du ein Profil anlegen möchtest, sag mir bitte: Ich möchte ein Profil anlegen";
+    public static final String SELECT_USER_TEXT = "Ok, der aktuelle Benutzer ist ";
+    public static final String SELECT_USER_TEXT_FAIL = "Es gibt kein Profil mit dem Namen ";
 
     public static final String STOP_SKILL = "Tschüss!";
 }
