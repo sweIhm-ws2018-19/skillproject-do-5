@@ -26,7 +26,8 @@ public class DrinkTest {
         HashMap<String, Object> should = new HashMap<>();
         should.put("name", "WEIN");
         should.put("container", "GLAS");
-        Assertions.assertEquals(should, Drink.WEIN.serialize(null));
+        should.put("user", "testUser");
+        Assertions.assertEquals(should, Drink.WEIN.serialize(null, "testUser"));
     }
 
 
