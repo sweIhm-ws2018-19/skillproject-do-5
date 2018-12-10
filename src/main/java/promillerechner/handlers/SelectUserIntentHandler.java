@@ -7,6 +7,7 @@ import com.amazon.ask.model.DialogState;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
+import com.amazon.ask.response.ResponseBuilder;
 import promillerechner.model.User;
 import promillerechner.Constants;
 
@@ -23,10 +24,10 @@ public class SelectUserIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-        String responseSpeech = Constants.SELECT_USER_TEXT;
 
         AttributesManager attributesManager = handlerInput.getAttributesManager();
         IntentRequest request = (IntentRequest) handlerInput.getRequestEnvelope().getRequest();
+        ResponseBuilder responseBuilder = handlerInput.getResponseBuilder();
 
         if (request.getDialogState() == DialogState.COMPLETED) {
 
@@ -36,22 +37,16 @@ public class SelectUserIntentHandler implements RequestHandler {
             boolean isSelected = user.selectUser(attributesManager, name);
 
             if (isSelected) {
-                return handlerInput
-                        .getResponseBuilder()
-                        .withSpeech(Constants.SELECT_USER_TEXT + " " + name + ".")
-                        .build();
+                responseBuilder = responseBuilder
+                        .withSpeech(Constants.SELECT_USER_TEXT + " " + name + ".");
             } else {
-                return handlerInput
-                        .getResponseBuilder()
-                        .withSpeech(Constants.SELECT_USER_TEXT_FAIL + " " + name + ".")
-                        .build();
+                responseBuilder = responseBuilder
+                        .withSpeech(Constants.SELECT_USER_TEXT_FAIL + " " + name + ".");
             }
         } else {
-            return handlerInput
-                    .getResponseBuilder()
-                    .addDelegateDirective(request.getIntent())
-                    .build();
+            responseBuilder = responseBuilder
+                    .addDelegateDirective(request.getIntent());
         }
-
+        return responseBuilder.build();
     }
 }
