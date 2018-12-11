@@ -56,7 +56,6 @@ public enum Drink{
      * Saves drink (in given container) to the database
      * @param attrMan Attributes manager
      * @param container Container or null (use default)
-     * TODO: Save user specific
      */
     public void persist(AttributesManager attrMan, Container container) {
         Map<String, Object> attributes = attrMan.getPersistentAttributes();
