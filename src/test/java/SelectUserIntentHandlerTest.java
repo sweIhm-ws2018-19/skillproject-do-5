@@ -11,14 +11,6 @@ class SelectUserIntentHandlerTest {
 
     SelectUserIntentHandler handler = new SelectUserIntentHandler();
     HandlerInput handlerInput = mock(HandlerInput.class);
-    when(handlerInput.matches(intentName(Constants.INTENT_SELECT_USER)).thenReturn(true);
-
-    @Test
-    void testCanHandle() {
-        SelectUserIntentHandler selectUserIntentHandler = new SelectUserIntentHandler();
-        boolean b = selectUserIntentHandler.canHandle(handlerInput);
-        assertEquals(true, b);
-    }
 
     @Test
     public void testCanHandle() {
