@@ -1,28 +1,30 @@
-
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Slot;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
-import promillerechner.handlers.CreateUserIntentHandler;
+import promillerechner.Constants;
 import promillerechner.handlers.SelectUserIntentHandler;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
-class CreateUserIntentHandlerTest {
+class SelectUserIntentHandlerTest {
 
-    CreateUserIntentHandler handler;
+    SelectUserIntentHandler handler;
+    HandlerInput handlerInput = mock(HandlerInput.class);
 
-    @org.junit.jupiter.api.Test
-    void testCanHandle() {
+    @Test
+    public void testCanHandle() {
+        final HandlerInput inputMock = Mockito.mock(HandlerInput.class);
+        when(inputMock.matches(any())).thenReturn(true);
+        assertTrue(handler.canHandle(inputMock));
     }
 
     @Test
@@ -30,22 +32,31 @@ class CreateUserIntentHandlerTest {
         // Testinput
         Map<String, Slot> data = new HashMap<>();
         Map<String, Object> persisstentAttributes = new HashMap<>();
+        Map<String, Object> userMapInput = new HashMap<>();
         LinkedList<Map<String,Object>> userListInput = new LinkedList<>();
         data.put("name",Slot.builder().withName("name").withValue("testuser").build());
-        data.put("age",Slot.builder().withName("age").withValue("20").build());
-        data.put("weight",Slot.builder().withName("weight").withValue("100").build());
-        data.put("gender",Slot.builder().withName("gender").withValue("männlich").build());
+        userMapInput.put("name","testuser");
+        userMapInput.put("age",10);
+        userMapInput.put("sex","Männlich");
+        userMapInput.put("mass",70);
+        userListInput.add(userMapInput);
         persisstentAttributes.put("users",userListInput);
 
         // Should be Output
         Map<String, Object> outputAttributes = new HashMap<>();
+        Map<String, Object> userMapOutput = new HashMap<>();
         LinkedList<Map<String,Object>> userListOutput = new LinkedList<>();
-        Map<String, Object> user = new HashMap<>();
-        user.put("name","testuser");
-        user.put("age",20);
-        user.put("sex","männlich");
-        user.put("mass",100);
-        userListOutput.add(user);
+        userMapOutput.put("name","testuser");
+        userMapOutput.put("age",10);
+        userMapOutput.put("sex","Männlich");
+        userMapOutput.put("mass",70);
+        userListOutput.add(userMapOutput);
+        Map<String, Object> currentUser = new HashMap<>();
+        currentUser.put("name","testuser");
+        currentUser.put("age",10);
+        currentUser.put("sex","Männlich");
+        currentUser.put("mass",70);
+        outputAttributes.put("currentUser", currentUser);
         outputAttributes.put("users",userListOutput);
 
         // Mock attributesManager
@@ -57,10 +68,10 @@ class CreateUserIntentHandlerTest {
         doNothing().when(coustemAttributesmanager).setPersistentAttributes(arg.capture());
 
         HandlerInput test = TestTools.coustemHandlerInput(coustemAttributesmanager, data);
-        handler = new CreateUserIntentHandler();
+        handler = new SelectUserIntentHandler();
         handler.handle(test);
 
-        assertEquals(outputAttributes, arg.getValue());
+        Assert.assertEquals(outputAttributes, arg.getValue());
 
     }
 }
