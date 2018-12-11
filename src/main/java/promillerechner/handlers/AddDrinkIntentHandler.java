@@ -41,7 +41,7 @@ public class AddDrinkIntentHandler implements RequestHandler {
         else if (request.getDialogState() == DialogState.COMPLETED) {
             Map<String, Slot> slots = request.getIntent().getSlots();
             //TODO
-            String drankDrinkString = "";
+            String drankDrinkString = slots.get("drinks").getValue();
             //TODO
             Drink drankDrink = Drink.valueOf(drankDrinkString.toUpperCase());
             drankDrink.persist(attributesManager, drankDrink.getDefaultContainer());
