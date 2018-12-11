@@ -29,7 +29,15 @@ public class AddDrinkIntentHandler implements RequestHandler {
 
         IntentRequest request = (IntentRequest) handlerInput.getRequestEnvelope().getRequest();
         // Hier prüfen ob current User überhaupt vorhanden ist
+       String userString = User.getCurrentUser(attributesManager);
+       if(userString.equals("")) {
+           return handlerInput
+                   .getResponseBuilder()
+                   .withSpeech(Constants.ADD_DRINK_NO_VALID_USER_ERROR)
+                   .build();
+       }
         // Getränk und Container abfragen
+
         // Hodor
 
         Drink.BIER.persist(attributesManager, Container.SHOT);
