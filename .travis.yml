@@ -12,7 +12,7 @@ install:
 #  region: "us-east-1"
 #  role: "arn:aws:iam::457514362535:role/lambda_dynamo"
 #  runtime: "java8"
-#  handler_name: "main.java.promillerechner.ColorPickerStreamHandler"
+#  handler_name: "main.java.promillerechner.PromillerechnerStreamHandler"
 
 addons:
   sonarcloud:
