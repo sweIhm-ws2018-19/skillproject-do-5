@@ -28,8 +28,8 @@ public class UserSerializationTests {
         Map<String, Slot> map = new HashMap<>();
         map.put("name", Slot.builder().withValue("Hans").build());
         map.put("age",  Slot.builder().withValue("10").build());
-        map.put("gender", Slot.builder().withValue("männlich").build());
-        map.put("weight", Slot.builder().withValue("100").build());
+        map.put("sex", Slot.builder().withValue("männlich").build());
+        map.put("mass", Slot.builder().withValue("100").build());
 
         User user = new User(map);
 
