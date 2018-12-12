@@ -14,17 +14,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-public class LaunchRequestHandlerTest {
+public class CancelandStopIntentHandlerTest {
 
-    private LaunchRequestHandler handler;
+    private CancelandStopIntentHandler handler;
 
     @Before
     public void setup() {
-        handler = new LaunchRequestHandler();
+        handler = new CancelandStopIntentHandler();
     }
 
     @Test
@@ -43,7 +43,6 @@ public class LaunchRequestHandlerTest {
         final Optional<Response> res = handler.handle(inputMock);
         assertTrue(res.isPresent());
         final Response response = res.get();
-        assertTrue(response.getOutputSpeech().toString().contains(Constants.GREETING));
-        assertTrue(response.getReprompt().toString().contains(Constants.GREETING_REPROMT));
+        assertTrue(response.getOutputSpeech().toString().contains(Constants.STOP_SKILL));
     }
 }
