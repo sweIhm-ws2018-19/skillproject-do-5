@@ -25,9 +25,8 @@ public class User {
     public User(Map<String, Slot> userSlots) {
         this.name = userSlots.get("name").getValue();
         this.age = Integer.parseInt(userSlots.get("age").getValue());
-        this.sex = userSlots.get("gender").getValue();
-        this.mass = Integer.parseInt(userSlots.get("weight").getValue());
-        this.consumedDrinks = new ArrayList<Drink>();
+        this.sex = userSlots.get("sex").getValue();
+        this.mass = Integer.parseInt(userSlots.get("mass").getValue());
     }
 
     public Map<String,Object> toMap() {

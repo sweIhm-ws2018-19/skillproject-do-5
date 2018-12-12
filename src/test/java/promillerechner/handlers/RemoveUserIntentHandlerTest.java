@@ -2,15 +2,18 @@ package promillerechner.handlers;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+import promillerechner.Constants;
 import promillerechner.ToolsTest;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -64,8 +67,11 @@ public class RemoveUserIntentHandlerTest {
         doNothing().when(coustemAttributesmanager).setPersistentAttributes(arg.capture());
 
         HandlerInput test = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
-        handler.handle(test);
+        final Optional<Response> res = handler.handle(test);
+        assertTrue(res.isPresent());
+        final Response response = res.get();
 
+        assertTrue(response.getOutputSpeech().toString().contains(Constants.REMOVE_USER_TEXT));
         assertEquals(outputAttributes, arg.getValue());
     }
 
@@ -113,8 +119,25 @@ public class RemoveUserIntentHandlerTest {
         doNothing().when(coustemAttributesmanager).setPersistentAttributes(arg.capture());
 
         HandlerInput test = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
-        handler.handle(test);
+        final Optional<Response> res = handler.handle(test);
+        assertTrue(res.isPresent());
+        final Response response = res.get();
 
+        assertTrue(response.getOutputSpeech().toString().contains(Constants.REMOVE_USER_TEXT));
         assertEquals(outputAttributes, arg.getValue());
+    }
+
+    @Test
+    public void testRemoveNotExistingUser() {
+        final AttributesManager coustemAttributesmanager = Mockito.mock(AttributesManager.class);
+        Map<String, Slot> data = new HashMap<>();
+        data.put("name",Slot.builder().withName("name").withValue("").build());
+
+        HandlerInput test = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
+        final Optional<Response> res = handler.handle(test);
+        assertTrue(res.isPresent());
+        final Response response = res.get();
+
+        assertTrue(response.getOutputSpeech().toString().contains(Constants.REMOVE_USER_ERROR));
     }
 }
