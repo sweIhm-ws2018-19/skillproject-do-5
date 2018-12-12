@@ -25,6 +25,8 @@ public class Constants {
     //Speech
     public static final String ADD_USER_TEXT = "Ok, ich habe den Benutzer angelegt.";
     public static final String ADD_USER_ERROR = "Es gibt bereits ein gleichnamiges Profil.";
+    public static final String ADD_DRINK_NO_VALID_USER_ERROR = "Es wurde kein gültiger Nutzer eingegeben!";
+    public static final String ADD_DRINK_SUCCESSFUL = "Das Getränk wurde erfolgreich zum Profil hinzugefügt. (Profil, Getränk) = (";
     public static final String REMOVE_USER_TEXT = "Der Nutzer wurde erfolgreich entfernt.";
     public static final String REMOVE_USER_ERROR = "Nutzer ist nicht vorhanden!";
     public static final String UNKNOWN_QUERY = "Tut mir leid, das weiss ich nicht. Sage einfach Hilfe.";
