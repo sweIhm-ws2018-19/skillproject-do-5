@@ -1,16 +1,14 @@
+package promillerechner;
+
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.*;
 import com.amazon.ask.response.ResponseBuilder;
 import org.mockito.Mockito;
-import org.mockito.stubbing.Answer;
-
 import java.util.Map;
-
-import static org.mockito.ArgumentMatchers.anyMap;
 import static org.mockito.Mockito.when;
 
-public class TestTools {
+public class ToolsTest {
 
     public static HandlerInput coustemHandlerInput(AttributesManager attributesManager, Map<String, Slot> data) {
 

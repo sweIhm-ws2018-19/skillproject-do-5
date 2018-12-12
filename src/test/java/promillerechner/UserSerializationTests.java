@@ -1,3 +1,4 @@
+package promillerechner;
 
 import com.amazon.ask.model.Slot;
 import promillerechner.model.User;

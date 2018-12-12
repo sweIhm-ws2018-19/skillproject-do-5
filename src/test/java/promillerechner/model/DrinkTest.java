@@ -1,7 +1,7 @@
+package promillerechner.model;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import promillerechner.model.Drink;
-import promillerechner.model.Container;
 
 import java.util.HashMap;
 

@@ -1,14 +1,12 @@
+package promillerechner.handlers;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Slot;
-import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
-import promillerechner.handlers.CreateUserIntentHandler;
-import promillerechner.handlers.SelectUserIntentHandler;
+import promillerechner.ToolsTest;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -17,16 +15,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
-class CreateUserIntentHandlerTest {
+public class CreateUserIntentHandlerTest {
 
-    CreateUserIntentHandler handler;
-
-    @org.junit.jupiter.api.Test
-    void testCanHandle() {
-    }
+    private CreateUserIntentHandler handler;
 
     @Test
-    void testHandle() {
+    public void testHandle() {
         // Testinput
         Map<String, Slot> data = new HashMap<>();
         Map<String, Object> persisstentAttributes = new HashMap<>();
@@ -56,7 +50,7 @@ class CreateUserIntentHandlerTest {
         ArgumentCaptor<Map<String, Object>> arg = ArgumentCaptor.forClass(Map.class);
         doNothing().when(coustemAttributesmanager).setPersistentAttributes(arg.capture());
 
-        HandlerInput test = TestTools.coustemHandlerInput(coustemAttributesmanager, data);
+        HandlerInput test = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
         handler = new CreateUserIntentHandler();
         handler.handle(test);
 
