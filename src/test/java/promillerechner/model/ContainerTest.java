@@ -1,14 +1,14 @@
 package promillerechner.model;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import promillerechner.model.Container;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class ContainerTest {
 
     @Test
     public void testStamperl() {
-        Assertions.assertEquals(44, Container.SHOT.getSize());
-        Assertions.assertEquals("Shot", Container.SHOT.getName());
+        assertEquals(44, Container.SHOT.getSize());
+        assertEquals("Shot", Container.SHOT.getName());
     }
 }

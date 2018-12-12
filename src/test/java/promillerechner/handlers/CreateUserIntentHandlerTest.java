@@ -3,6 +3,7 @@ package promillerechner.handlers;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Slot;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
@@ -11,13 +12,27 @@ import promillerechner.ToolsTest;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 public class CreateUserIntentHandlerTest {
 
     private CreateUserIntentHandler handler;
+
+    @Before
+    public void setup() {
+        handler = new CreateUserIntentHandler();
+    }
+
+    @Test
+    public void testCanHandle() {
+        final HandlerInput handlerMock = Mockito.mock(HandlerInput.class);
+        when(handlerMock.matches(any())).thenReturn(true);
+        assertTrue(handler.canHandle(handlerMock));
+    }
 
     @Test
     public void testHandle() {
@@ -51,7 +66,6 @@ public class CreateUserIntentHandlerTest {
         doNothing().when(coustemAttributesmanager).setPersistentAttributes(arg.capture());
 
         HandlerInput test = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
-        handler = new CreateUserIntentHandler();
         handler.handle(test);
 
         assertEquals(outputAttributes, arg.getValue());

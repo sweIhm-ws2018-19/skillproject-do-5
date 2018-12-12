@@ -3,7 +3,7 @@ package promillerechner.handlers;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Slot;
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
@@ -12,12 +12,26 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 public class RemoveUserIntentHandlerTest {
 
     private RemoveUserIntentHandler handler;
+
+    @Before
+    public void setup() {
+        handler = new RemoveUserIntentHandler();
+    }
+
+    @Test
+    public void testCanHandle() {
+        final HandlerInput handlerMock = Mockito.mock(HandlerInput.class);
+        when(handlerMock.matches(any())).thenReturn(true);
+        assertTrue(handler.canHandle(handlerMock));
+    }
 
     @Test
     public void testHandleOneUser() {
@@ -50,10 +64,9 @@ public class RemoveUserIntentHandlerTest {
         doNothing().when(coustemAttributesmanager).setPersistentAttributes(arg.capture());
 
         HandlerInput test = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
-        handler = new RemoveUserIntentHandler();
         handler.handle(test);
 
-        Assert.assertEquals(outputAttributes, arg.getValue());
+        assertEquals(outputAttributes, arg.getValue());
     }
 
     @Test
@@ -100,9 +113,8 @@ public class RemoveUserIntentHandlerTest {
         doNothing().when(coustemAttributesmanager).setPersistentAttributes(arg.capture());
 
         HandlerInput test = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
-        handler = new RemoveUserIntentHandler();
         handler.handle(test);
 
-        Assert.assertEquals(outputAttributes, arg.getValue());
+        assertEquals(outputAttributes, arg.getValue());
     }
 }

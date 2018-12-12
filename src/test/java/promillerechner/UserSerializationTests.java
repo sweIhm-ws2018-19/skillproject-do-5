@@ -2,11 +2,11 @@ package promillerechner;
 
 import com.amazon.ask.model.Slot;
 import promillerechner.model.User;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
-
+import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.junit.Assert.*;
 
 public class UserSerializationTests {
 
@@ -20,7 +20,7 @@ public class UserSerializationTests {
         map.put("sex", "männlich");
         map.put("mass", 100);
 
-        Assertions.assertEquals(map, user.toMap());
+        assertEquals(map, user.toMap());
     }
 
     @Test
@@ -33,10 +33,10 @@ public class UserSerializationTests {
 
         User user = new User(map);
 
-        Assertions.assertEquals(user.getAge(), 10);
-        Assertions.assertEquals(user.getName(), "Hans");
-        Assertions.assertEquals(user.getSex(), "männlich");
-        Assertions.assertEquals(user.getMass(), 100);
+        assertEquals(user.getAge(), 10);
+        assertEquals(user.getName(), "Hans");
+        assertEquals(user.getSex(), "männlich");
+        assertEquals(user.getMass(), 100);
 
 
     }
