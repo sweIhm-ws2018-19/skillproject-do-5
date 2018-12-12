@@ -1,6 +1,8 @@
 package promillerechner;
 
 public class Constants {
+
+
     private Constants() {}
     //Tables
     public static final String USER_TABLE = "promillerechner";
@@ -27,6 +29,7 @@ public class Constants {
     public static final String ADD_USER_ERROR = "Es gibt bereits ein gleichnamiges Profil.";
     public static final String ADD_DRINK_NO_VALID_USER_ERROR = "Es wurde kein gültiger Nutzer eingegeben!";
     public static final String ADD_DRINK_SUCCESSFUL = "Das Getränk wurde erfolgreich zum Profil hinzugefügt.";
+    public static final String NO_VALID_DRINK = "Das ist kein gültiges Getränk! Bist du etwa schon so besoffen?";
     public static final String REMOVE_USER_TEXT = "Der Nutzer wurde erfolgreich entfernt.";
     public static final String REMOVE_USER_ERROR = "Nutzer ist nicht vorhanden!";
     public static final String UNKNOWN_QUERY = "Tut mir leid, das weiss ich nicht. Sage einfach Hilfe.";

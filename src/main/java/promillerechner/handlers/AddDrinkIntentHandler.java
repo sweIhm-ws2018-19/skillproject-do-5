@@ -41,10 +41,17 @@ public class AddDrinkIntentHandler implements RequestHandler {
         else if (request.getDialogState() == DialogState.COMPLETED) {
             Map<String, Slot> slots = request.getIntent().getSlots();
             String drankDrinkString = slots.get("drinks").getValue();
-            Drink drankDrink = Drink.valueOf(drankDrinkString.toUpperCase());
-            drankDrink.persist(attributesManager, drankDrink.getDefaultContainer());
-            responseBuilder = responseBuilder
-                    .withSpeech(Constants.ADD_DRINK_SUCCESSFUL);
+
+            try {
+                Drink drankDrink = Drink.valueOf(drankDrinkString.toUpperCase());
+                drankDrink.persist(attributesManager, drankDrink.getDefaultContainer());
+                responseBuilder = responseBuilder
+                        .withSpeech(Constants.ADD_DRINK_SUCCESSFUL);
+            } catch (IllegalArgumentException e) {
+                responseBuilder = responseBuilder
+                        .withSpeech(Constants.NO_VALID_DRINK);
+            }
+
         } else {
             responseBuilder = responseBuilder
                     .addDelegateDirective(request.getIntent());
