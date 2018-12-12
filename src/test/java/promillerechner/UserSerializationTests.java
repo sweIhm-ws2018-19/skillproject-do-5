@@ -1,11 +1,12 @@
+package promillerechner;
 
 import com.amazon.ask.model.Slot;
 import promillerechner.model.User;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
-
+import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.junit.Assert.*;
 
 public class UserSerializationTests {
 
@@ -19,7 +20,7 @@ public class UserSerializationTests {
         map.put("sex", "männlich");
         map.put("mass", 100);
 
-        Assertions.assertEquals(map, user.toMap());
+        assertEquals(map, user.toMap());
     }
 
     @Test
@@ -27,15 +28,15 @@ public class UserSerializationTests {
         Map<String, Slot> map = new HashMap<>();
         map.put("name", Slot.builder().withValue("Hans").build());
         map.put("age",  Slot.builder().withValue("10").build());
-        map.put("gender", Slot.builder().withValue("männlich").build());
-        map.put("weight", Slot.builder().withValue("100").build());
+        map.put("sex", Slot.builder().withValue("männlich").build());
+        map.put("mass", Slot.builder().withValue("100").build());
 
         User user = new User(map);
 
-        Assertions.assertEquals(user.getAge(), 10);
-        Assertions.assertEquals(user.getName(), "Hans");
-        Assertions.assertEquals(user.getSex(), "männlich");
-        Assertions.assertEquals(user.getMass(), 100);
+        assertEquals(user.getAge(), 10);
+        assertEquals(user.getName(), "Hans");
+        assertEquals(user.getSex(), "männlich");
+        assertEquals(user.getMass(), 100);
 
 
     }

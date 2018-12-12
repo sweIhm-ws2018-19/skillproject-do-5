@@ -1,44 +1,64 @@
+package promillerechner.handlers;
+
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
-import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
-import promillerechner.handlers.RemoveUserIntentHandler;
+import promillerechner.Constants;
+import promillerechner.ToolsTest;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Optional;
 
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
-public class RemoveUserIntentHandlerTest {
+public class CreateUserIntentHandlerTest {
 
-    RemoveUserIntentHandler handler;
+    private CreateUserIntentHandler handler;
+
+    @Before
+    public void setup() {
+        handler = new CreateUserIntentHandler();
+    }
 
     @Test
-    public void testHandleOneUser() {
+    public void testCanHandle() {
+        final HandlerInput handlerMock = Mockito.mock(HandlerInput.class);
+        when(handlerMock.matches(any())).thenReturn(true);
+        assertTrue(handler.canHandle(handlerMock));
+    }
 
+    @Test
+    public void testHandle() {
         // Testinput
         Map<String, Slot> data = new HashMap<>();
         Map<String, Object> persisstentAttributes = new HashMap<>();
-        Map<String, Object> userMapInput = new HashMap<>();
         LinkedList<Map<String,Object>> userListInput = new LinkedList<>();
+        data.put("name",Slot.builder().withName("name").withValue("testuser").build());
+        data.put("age",Slot.builder().withName("age").withValue("20").build());
+        data.put("mass",Slot.builder().withName("mass").withValue("100").build());
+        data.put("sex",Slot.builder().withName("sex").withValue("männlich").build());
+        persisstentAttributes.put("users",userListInput);
+
         // Should be Output
         Map<String, Object> outputAttributes = new HashMap<>();
-
-        // Input
-        data.put("name",Slot.builder().withName("name").withValue("testuser").build());
-        userMapInput.put("name","testuser");
-        userMapInput.put("age",10);
-        userMapInput.put("sex","Männlich");
-        userMapInput.put("mass",70);
-        userListInput.add(userMapInput);
-        persisstentAttributes.put("users",userListInput);
-        // Output
-        outputAttributes.put("users",new LinkedList<>());
+        LinkedList<Map<String,Object>> userListOutput = new LinkedList<>();
+        Map<String, Object> user = new HashMap<>();
+        user.put("name","testuser");
+        user.put("age",20);
+        user.put("sex","männlich");
+        user.put("mass",100);
+        userListOutput.add(user);
+        outputAttributes.put("users",userListOutput);
 
         // Mock attributesManager
         final AttributesManager coustemAttributesmanager = Mockito.mock(AttributesManager.class);
@@ -48,39 +68,38 @@ public class RemoveUserIntentHandlerTest {
         ArgumentCaptor<Map<String, Object>> arg = ArgumentCaptor.forClass(Map.class);
         doNothing().when(coustemAttributesmanager).setPersistentAttributes(arg.capture());
 
-        HandlerInput test = TestTools.coustemHandlerInput(coustemAttributesmanager, data);
-        handler = new RemoveUserIntentHandler();
-        handler.handle(test);
+        HandlerInput test = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
+        final Optional<Response> res = handler.handle(test);
+        assertTrue(res.isPresent());
+        final Response response = res.get();
 
-        Assert.assertEquals(outputAttributes, arg.getValue());
+        assertTrue(response.getOutputSpeech().toString().contains(Constants.ADD_USER_TEXT));
+
+        assertEquals(outputAttributes, arg.getValue());
     }
 
     @Test
-    public void testTwoUser() {
+    public void testAddExistingUser() {
         // Testinput
         Map<String, Slot> data = new HashMap<>();
         Map<String, Object> persisstentAttributes = new HashMap<>();
         Map<String, Object> userMapInput = new HashMap<>();
         LinkedList<Map<String,Object>> userListInput = new LinkedList<>();
-        // Testinput2
-        Map<String, Object> userMapInput2 = new HashMap<>();
         // Should be Output
         Map<String, Object> outputAttributes = new HashMap<>();
         Map<String, Object> userMapOutput = new HashMap<>();
         LinkedList<Map<String,Object>> userListOutput = new LinkedList<>();
 
         // Input
-        data.put("name",Slot.builder().withName("name").withValue("testuser2").build());
+        data.put("name",Slot.builder().withName("name").withValue("testuser1").build());
+        data.put("age",Slot.builder().withName("age").withValue("10").build());
+        data.put("sex",Slot.builder().withName("sex").withValue("Männlich").build());
+        data.put("mass",Slot.builder().withName("mass").withValue("70").build());
         userMapInput.put("name","testuser1");
         userMapInput.put("age",10);
         userMapInput.put("sex","Männlich");
         userMapInput.put("mass",70);
-        userMapInput2.put("name","testuser2");
-        userMapInput2.put("age",20);
-        userMapInput2.put("sex","Weiblich");
-        userMapInput2.put("mass",50);
         userListInput.add(userMapInput);
-        userListInput.add(userMapInput2);
         persisstentAttributes.put("users",userListInput);
         // Output
         userMapOutput.put("name","testuser1");
@@ -98,10 +117,12 @@ public class RemoveUserIntentHandlerTest {
         ArgumentCaptor<Map<String, Object>> arg = ArgumentCaptor.forClass(Map.class);
         doNothing().when(coustemAttributesmanager).setPersistentAttributes(arg.capture());
 
-        HandlerInput test = TestTools.coustemHandlerInput(coustemAttributesmanager, data);
-        handler = new RemoveUserIntentHandler();
-        handler.handle(test);
+        HandlerInput test = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
+        final Optional<Response> res = handler.handle(test);
+        assertTrue(res.isPresent());
+        final Response response = res.get();
 
-        Assert.assertEquals(outputAttributes, arg.getValue());
+        assertTrue(response.getOutputSpeech().toString().contains(Constants.ADD_USER_ERROR));
+        assertEquals(outputAttributes, arg.getValue());
     }
 }

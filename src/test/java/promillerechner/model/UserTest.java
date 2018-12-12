@@ -1,10 +1,10 @@
-import promillerechner.model.*;
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
+package promillerechner.model;
+
+import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestUser {
+public class UserTest {
 
     private static final String userName = "test";
     private static final int userAge = 18;
@@ -20,12 +20,4 @@ public class TestUser {
         assertEquals(userMass,testUser.getMass());
 
     }
-
-    /*@Test
-    public void testAddDrink() {
-        User testUser = new User(userName,userAge,userSex,userMass);
-        Drink drink = Drink.BIER;
-        testUser.addDrink(drink);
-        assertTrue(testUser.getConsumedDrinks().contains(drink));
-    }*/
 }

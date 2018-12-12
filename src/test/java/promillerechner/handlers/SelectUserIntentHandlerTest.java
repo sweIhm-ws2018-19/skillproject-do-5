@@ -1,34 +1,41 @@
+package promillerechner.handlers;
+
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
-import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import promillerechner.Constants;
-import promillerechner.handlers.SelectUserIntentHandler;
-
+import promillerechner.ToolsTest;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-class SelectUserIntentHandlerTest {
+public class SelectUserIntentHandlerTest {
 
-    SelectUserIntentHandler handler;
-    HandlerInput handlerInput = mock(HandlerInput.class);
+    private SelectUserIntentHandler handler;
 
-    @Test
-    public void testCanHandle() {
-        final HandlerInput inputMock = Mockito.mock(HandlerInput.class);
-        when(inputMock.matches(any())).thenReturn(true);
-        assertTrue(handler.canHandle(inputMock));
+    @Before
+    public void setup() {
+        handler = new SelectUserIntentHandler();
     }
 
     @Test
-    void testHandle() {
+    public void testCanHandle() {
+        final HandlerInput handlerMock = Mockito.mock(HandlerInput.class);
+        when(handlerMock.matches(any())).thenReturn(true);
+        assertTrue(handler.canHandle(handlerMock));
+    }
+
+    @Test
+    public void testHandle() {
         // Testinput
         Map<String, Slot> data = new HashMap<>();
         Map<String, Object> persisstentAttributes = new HashMap<>();
@@ -67,11 +74,26 @@ class SelectUserIntentHandlerTest {
         ArgumentCaptor<Map<String, Object>> arg = ArgumentCaptor.forClass(Map.class);
         doNothing().when(coustemAttributesmanager).setPersistentAttributes(arg.capture());
 
-        HandlerInput test = TestTools.coustemHandlerInput(coustemAttributesmanager, data);
-        handler = new SelectUserIntentHandler();
-        handler.handle(test);
+        HandlerInput test = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
+        final Optional<Response> res = handler.handle(test);
+        assertTrue(res.isPresent());
+        final Response response = res.get();
 
-        Assert.assertEquals(outputAttributes, arg.getValue());
+        assertTrue(response.getOutputSpeech().toString().contains(Constants.SELECT_USER_TEXT));
+        assertEquals(outputAttributes, arg.getValue());
+    }
 
+    @Test
+    public void testSelectNotExistingUser() {
+        final AttributesManager coustemAttributesmanager = Mockito.mock(AttributesManager.class);
+        Map<String, Slot> data = new HashMap<>();
+        data.put("name",Slot.builder().withName("name").withValue("testuser").build());
+
+        HandlerInput test = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
+        final Optional<Response> res = handler.handle(test);
+        assertTrue(res.isPresent());
+        final Response response = res.get();
+
+        assertTrue(response.getOutputSpeech().toString().contains(Constants.SELECT_USER_TEXT_FAIL));
     }
 }
