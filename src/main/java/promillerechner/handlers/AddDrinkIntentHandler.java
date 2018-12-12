@@ -41,15 +41,26 @@ public class AddDrinkIntentHandler implements RequestHandler {
         else if (request.getDialogState() == DialogState.COMPLETED) {
             Map<String, Slot> slots = request.getIntent().getSlots();
             String drankDrinkString = slots.get("drinks").getValue();
+            String containerString = slots.get("container").getValue();
+
+            Container container = null;
+            try {
+                container = Container.valueOf(containerString.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                responseBuilder = responseBuilder
+                        .withSpeech(Constants.NO_VALID_CONTAINER);
+                return responseBuilder.build();
+            }
 
             try {
                 Drink drankDrink = Drink.valueOf(drankDrinkString.toUpperCase());
-                drankDrink.persist(attributesManager, drankDrink.getDefaultContainer());
+                drankDrink.persist(attributesManager, container);
                 responseBuilder = responseBuilder
                         .withSpeech(Constants.ADD_DRINK_SUCCESSFUL);
             } catch (IllegalArgumentException e) {
                 responseBuilder = responseBuilder
                         .withSpeech(Constants.NO_VALID_DRINK);
+                return responseBuilder.build();
             }
 
         } else {
