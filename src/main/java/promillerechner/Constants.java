@@ -14,6 +14,7 @@ public class Constants {
     public static final String INTENT_REMOVE_USER = "RemoveUserIntent";
     public static final String INTENT_ADD_DRINK = "AddDrinkIntent";
     public static final String INTENT_SELECT_USER = "SelectUserIntent";
+    public static final String INTENT_DEPLET_PROMILLEVALUE = "DepletPromilleIntent";
 
     //Keys
     public static final String KEY_ADD_USER = "name";
