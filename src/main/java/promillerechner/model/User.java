@@ -2,10 +2,14 @@ package promillerechner.model;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
+import promillerechner.calculations.PromilleCalculator;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.Date;
 
 public class User {
     private String name;
@@ -73,7 +77,7 @@ public class User {
         return toReturn;
     }
 
-    private Map<String, Object> getUserByName(List<Map<String, Object>> users, String name) {
+    private static Map<String, Object> getUserByName(List<Map<String, Object>> users, String name) {
         for (Map el: users) {
             if (el.get("name").equals(name)) {
                 return el;
@@ -107,6 +111,36 @@ public class User {
         return toReturn;
     }
 
+    public static float readPromille(AttributesManager attrMan) {
+        Map<String, Object> attributes = attrMan.getPersistentAttributes();
+        attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
+
+        Map<String, Object> userData = getUserByName(((List) attributes.get("users")), getCurrentUser(attrMan));
+
+        List<Map<String, Object>> drinks = (List<Map<String, Object>>) attributes.get("drinks");
+
+        PromilleCalculator calculator = new PromilleCalculator();
+
+        for (Map<String, Object> drink : drinks) {
+            if (!((String)drink.get("user")).equals((String)userData.get("name"))) {
+                continue;
+            }
+            calculator.addDrink(
+                    Drink.valueOf((String)drink.get("name")),
+                    parseDate((String)drink.get("date")),
+                    Container.valueOf((String)drink.get("container")));
+        }
+        calculator.calculatePromille(
+            new User(
+                    (String)userData.get("name"),
+                    ((BigDecimal)userData.get("age")).intValue(),
+                    (String)userData.get("sex"),
+                    ((BigDecimal)userData.get("mass")).intValue()),
+                new Date()
+        );
+        return calculator.getPromilleF();
+    }
+
     public String getName() {
         return name;
     }
@@ -137,5 +171,13 @@ public class User {
     public int calculatePromilleDepleting() {
         // todo
         return 0;
+    }
+
+    private static Date parseDate(String date) {
+        try {
+            return new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy").parse(date);
+        } catch (ParseException e) {
+            return null;
+        }
     }
 }

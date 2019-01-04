@@ -3,7 +3,6 @@ package promillerechner.calculations;
 import promillerechner.model.Container;
 import promillerechner.model.Drink;
 import promillerechner.model.User;
-import sun.tools.jconsole.MaximizableInternalFrame;
 
 import java.util.Date;
 import java.util.LinkedList;

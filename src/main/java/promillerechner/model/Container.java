@@ -6,7 +6,7 @@ import java.util.Map;
 public enum Container {
 
     GLAS("Glas", 100),
-    MASS("Maß", 1000),
+    MASS("Mass", 1000),
     SHOT("Shot", 44),
     FLASCHE("Flasche", 500),
     COCKTAILGLAS("Cocktailglas", 200);
