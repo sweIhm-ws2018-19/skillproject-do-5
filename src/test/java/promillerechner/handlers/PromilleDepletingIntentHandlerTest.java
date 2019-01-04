@@ -1,3 +1,4 @@
+package promillerechner.handlers;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
@@ -8,25 +9,23 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import promillerechner.Constants;
 import promillerechner.ToolsTest;
-import promillerechner.handlers.AddDrinkIntentHandler;
 import promillerechner.model.User;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-public class AddDrinkIntentHandlerTest {
-
-    AddDrinkIntentHandler handler;
-    HandlerInput handlerInput = mock(HandlerInput.class);
+public class PromilleDepletingIntentHandlerTest {
+    PromilleDepletingIntentHandler handler;
 
     @Before
     public void setup() {
-        handler = new AddDrinkIntentHandler();
+        handler = new PromilleDepletingIntentHandler();
     }
 
     @Test
@@ -57,18 +56,5 @@ public class AddDrinkIntentHandlerTest {
 
         final Response response = res.get();
         System.out.println(response.getOutputSpeech().toString());
-    }
-
-    @Test
-    public void testAddDrinkWhenNoUserIsSelected() {
-        final AttributesManager customAttributesmanager = Mockito.mock(AttributesManager.class);
-        Map<String, Slot> data = new HashMap<>();
-
-        HandlerInput testHandlerInput = ToolsTest.coustemHandlerInput(customAttributesmanager, data);
-        final Optional<Response> res = handler.handle(testHandlerInput);
-        assertTrue(res.isPresent());
-
-        final Response response = res.get();
-        assertTrue(response.getOutputSpeech().toString().contains(Constants.ADD_DRINK_NO_VALID_USER_ERROR));
     }
 }
