@@ -120,9 +120,9 @@ public class User {
         PromilleCalculator calculator = new PromilleCalculator();
 
         for (Map<String, Object> drink : drinks) {
-                if (userData != null && !(drink.get(Constants.USER)).equals(userData.get("name"))) {
-                    continue;
-                }
+            if (userData == null || !(drink.get("user")).equals(userData.get("name"))) {
+                continue;
+            }
             calculator.addDrink(
                     Drink.valueOf((String)drink.get("name")),
                     parseDate((String)drink.get("date")),
@@ -159,8 +159,10 @@ public class User {
 
     private static Date parseDate(String date) {
         try {
-            return new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy").parse(date);
+            System.out.println(date);
+            return new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.US).parse(date);
         } catch (ParseException e) {
+            e.printStackTrace();
             return null;
         }
     }
