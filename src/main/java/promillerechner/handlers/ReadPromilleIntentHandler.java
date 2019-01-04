@@ -4,6 +4,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import promillerechner.Constants;
+import promillerechner.model.User;
 
 import java.util.Optional;
 
@@ -17,7 +18,10 @@ public class ReadPromilleIntentHandler implements RequestHandler {
     }
 
     @Override
-    public Optional<Response> handle(HandlerInput handlerInput) {
-        return Optional.empty();
+    public Optional<Response> handle(HandlerInput input) {
+        return input.getResponseBuilder()
+                .withSpeech("Du hast " + User.readPromille(input.getAttributesManager()) + " Promille")
+                .withShouldEndSession(false)
+                .build();
     }
 }
