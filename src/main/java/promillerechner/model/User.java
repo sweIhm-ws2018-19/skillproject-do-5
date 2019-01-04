@@ -2,13 +2,13 @@ package promillerechner.model;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
+import promillerechner.Constants;
 import promillerechner.calculations.PromilleCalculator;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.Date;
 
 public class User {
@@ -23,7 +23,7 @@ public class User {
         this.age = age;
         this.sex = sex;
         this.mass = mass;
-        this.consumedDrinks = new ArrayList<Drink>();
+        this.consumedDrinks = new ArrayList<>();
     }
 
     public User(Map<String, Slot> userSlots) {
@@ -43,12 +43,12 @@ public class User {
     }
 
     public boolean persist(AttributesManager attrMan) {
-        boolean contains = false;
+        boolean contains;
         Map<String, Object> attributes = attrMan.getPersistentAttributes();
-        contains = containsUser(((List) attributes.get("users")), this);
+        contains = containsUser(((List) attributes.get(Constants.USER)), this);
         if (!contains) {
-            attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
-            ((List) attributes.get("users")).add(this.toMap());
+            attributes.putIfAbsent(Constants.USER, new LinkedList<Map<String, Object>>());
+            ((List) attributes.get(Constants.USER)).add(this.toMap());
         }
         attrMan.setPersistentAttributes(attributes);
         attrMan.savePersistentAttributes();
@@ -67,10 +67,10 @@ public class User {
     public boolean remove(AttributesManager attrMan, String name) {
         boolean toReturn = false;
         Map<String, Object> attributes = attrMan.getPersistentAttributes();
-        attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
-        Map<String, Object> toRemove = getUserByName(((List) attributes.get("users")), name);
+        attributes.putIfAbsent(Constants.USER, new LinkedList<Map<String, Object>>());
+        Map<String, Object> toRemove = getUserByName(((List) attributes.get(Constants.USER)), name);
         if (toRemove != null) {
-            toReturn = ((List) attributes.get("users")).remove(toRemove);
+            toReturn = ((List) attributes.get(Constants.USER)).remove(toRemove);
         }
         attrMan.setPersistentAttributes(attributes);
         attrMan.savePersistentAttributes();
@@ -89,10 +89,10 @@ public class User {
     public boolean selectUser(AttributesManager attrMan, String name) {
         boolean toReturn = false;
         Map<String, Object> attributes = attrMan.getPersistentAttributes();
-        attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
-        Map<String, Object> currentUser = getUserByName(((List) attributes.get("users")), name);
+        attributes.putIfAbsent(Constants.USER, new LinkedList<Map<String, Object>>());
+        Map<String, Object> currentUser = getUserByName(((List) attributes.get(Constants.USER)), name);
         if (currentUser != null) {
-            attributes.put("currentUser", currentUser);
+            attributes.put(Constants.CURRENTUSER, currentUser);
             toReturn = true;
         }
         attrMan.setPersistentAttributes(attributes);
@@ -103,8 +103,8 @@ public class User {
     public static String getCurrentUser(AttributesManager attrMan) {
         Map<String, Object> attributes = attrMan.getPersistentAttributes();
         String toReturn = "";
-        if (attributes.containsKey("currentUser")) {
-            toReturn = ((Map<String, Object>) attributes.get("currentUser")).get("name").toString();
+        if (attributes.containsKey(Constants.CURRENTUSER)) {
+            toReturn = ((Map<String, Object>) attributes.get(Constants.CURRENTUSER)).get("name").toString();
         }
         attrMan.setPersistentAttributes(attributes);
         attrMan.savePersistentAttributes();
@@ -113,31 +113,35 @@ public class User {
 
     public static float readPromille(AttributesManager attrMan) {
         Map<String, Object> attributes = attrMan.getPersistentAttributes();
-        attributes.putIfAbsent("users", new LinkedList<Map<String, Object>>());
+        attributes.putIfAbsent(Constants.USER, new LinkedList<Map<String, Object>>());
 
-        Map<String, Object> userData = getUserByName(((List) attributes.get("users")), getCurrentUser(attrMan));
+        Map<String, Object> userData = getUserByName(((List) attributes.get(Constants.USER)), getCurrentUser(attrMan));
 
         List<Map<String, Object>> drinks = (List<Map<String, Object>>) attributes.get("drinks");
 
         PromilleCalculator calculator = new PromilleCalculator();
 
         for (Map<String, Object> drink : drinks) {
-            if (!((String)drink.get("user")).equals((String)userData.get("name"))) {
-                continue;
+            if (userData != null) {
+                if (!(drink.get(Constants.USER)).equals(userData.get("name"))) {
+                    continue;
+                }
             }
             calculator.addDrink(
                     Drink.valueOf((String)drink.get("name")),
                     parseDate((String)drink.get("date")),
                     Container.valueOf((String)drink.get("container")));
         }
-        calculator.calculatePromille(
-            new User(
-                    (String)userData.get("name"),
-                    ((BigDecimal)userData.get("age")).intValue(),
-                    (String)userData.get("sex"),
-                    ((BigDecimal)userData.get("mass")).intValue()),
-                new Date()
-        );
+        if (userData != null) {
+            calculator.calculatePromille(
+                    new User(
+                            (String) userData.get("name"),
+                            ((BigDecimal) userData.get("age")).intValue(),
+                            (String) userData.get("sex"),
+                            ((BigDecimal) userData.get("mass")).intValue()),
+                    new Date()
+            );
+        }
         return calculator.getPromilleF();
     }
 
@@ -155,22 +159,6 @@ public class User {
 
     public int getMass() {
         return mass;
-    }
-
-    public List<Drink> getConsumedDrinks() { return consumedDrinks; }
-
-    public void addDrink(Drink drink) {
-        consumedDrinks.add(drink);
-    }
-
-    public double calculatePromillevalue() {
-        // todo
-        return 0;
-    }
-
-    public int calculatePromilleDepleting() {
-        // todo
-        return 0;
     }
 
     private static Date parseDate(String date) {

@@ -33,7 +33,7 @@ public class PromilleCalculator {
                 float alcMl = (drinkMl * ((float)alcContent / 100) * 0.8f);
                 float factor = user.getSex().equals("männlich") ? 0.68f : 0.55f;
 
-                float promil = (float)((alcMl)/(user.getMass()*factor));
+                float promil = ((alcMl)/(user.getMass()*factor));
                 promilSum += promil;
             }
         }

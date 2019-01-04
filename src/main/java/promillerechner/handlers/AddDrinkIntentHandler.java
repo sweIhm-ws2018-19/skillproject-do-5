@@ -48,9 +48,6 @@ public class AddDrinkIntentHandler implements RequestHandler {
             responseBuilder = responseBuilder
                     .addDelegateDirective(request.getIntent());
         }
-        // Hodor
-        // Drink.BIER.persist(attributesManager, Container.SHOT);
-
         return responseBuilder.build();
     }
 }

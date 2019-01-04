@@ -24,6 +24,10 @@ public class Constants {
     public static final String CARD_HELP = "Hilfemenü";
     public static final String CARD_GREETING = "Begrüßung";
 
+    //Database
+    public static final String USER = "users";
+    public static final String CURRENTUSER = "currentUser";
+
     //Speech
     public static final String ADD_USER_TEXT = "Ok, ich habe den Benutzer angelegt.";
     public static final String ADD_USER_ERROR = "Es gibt bereits ein gleichnamiges Profil.";

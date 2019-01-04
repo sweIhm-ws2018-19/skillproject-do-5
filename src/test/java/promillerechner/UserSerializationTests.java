@@ -33,10 +33,10 @@ public class UserSerializationTests {
 
         User user = new User(map);
 
-        assertEquals(user.getAge(), 10);
-        assertEquals(user.getName(), "Hans");
-        assertEquals(user.getSex(), "männlich");
-        assertEquals(user.getMass(), 100);
+        assertEquals(10,user.getAge());
+        assertEquals("Hans", user.getName());
+        assertEquals("männlich", user.getSex());
+        assertEquals(100, user.getMass());
 
 
     }
