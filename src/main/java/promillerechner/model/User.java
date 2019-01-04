@@ -16,14 +16,12 @@ public class User {
     private int age;
     private String sex;
     private int mass;
-    private List<Drink> consumedDrinks;
 
     public User(String name, int age, String sex, int mass) {
         this.name = name;
         this.age = age;
         this.sex = sex;
         this.mass = mass;
-        this.consumedDrinks = new ArrayList<>();
     }
 
     public User(Map<String, Slot> userSlots) {
@@ -122,11 +120,9 @@ public class User {
         PromilleCalculator calculator = new PromilleCalculator();
 
         for (Map<String, Object> drink : drinks) {
-            if (userData != null) {
-                if (!(drink.get(Constants.USER)).equals(userData.get("name"))) {
+                if (userData != null && !(drink.get(Constants.USER)).equals(userData.get("name"))) {
                     continue;
                 }
-            }
             calculator.addDrink(
                     Drink.valueOf((String)drink.get("name")),
                     parseDate((String)drink.get("date")),
