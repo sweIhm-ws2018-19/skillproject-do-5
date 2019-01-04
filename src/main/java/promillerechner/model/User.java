@@ -162,7 +162,6 @@ public class User {
             System.out.println(date);
             return new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.US).parse(date);
         } catch (ParseException e) {
-            e.printStackTrace();
             return null;
         }
     }
