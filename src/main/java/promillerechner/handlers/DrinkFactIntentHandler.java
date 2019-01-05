@@ -24,6 +24,8 @@ public class DrinkFactIntentHandler implements RequestHandler {
         IntentRequest request = (IntentRequest) handlerInput.getRequestEnvelope().getRequest();
         ResponseBuilder responseBuilder = handlerInput.getResponseBuilder();
 
+        //Test
+
         return Optional.empty();
     }
 }
