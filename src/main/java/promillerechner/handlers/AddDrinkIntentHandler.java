@@ -43,7 +43,7 @@ public class AddDrinkIntentHandler implements RequestHandler {
             Drink drankDrink = Drink.valueOf(drankDrinkString.toUpperCase());
             drankDrink.persist(attributesManager, drankDrink.getDefaultContainer());
             responseBuilder = responseBuilder
-                    .withSpeech(Constants.ADD_DRINK_SUCCESSFUL + userString + ", " + drankDrink +  ")");
+                    .withSpeech(Constants.ADD_DRINK_SUCCESSFUL);
         } else {
             responseBuilder = responseBuilder
                     .addDelegateDirective(request.getIntent());
