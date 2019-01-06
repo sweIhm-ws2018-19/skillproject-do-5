@@ -6,16 +6,15 @@ import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import promillerechner.Constants;
 import promillerechner.ToolsTest;
 import promillerechner.handlers.AddDrinkIntentHandler;
 import promillerechner.model.User;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Optional;
+import java.math.BigDecimal;
+import java.util.*;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -39,25 +38,48 @@ public class AddDrinkIntentHandlerTest {
 
     @Test
     public void testAddADrinkToAUser() {
-        final AttributesManager customAttributesmanager = Mockito.mock(AttributesManager.class);
         Map<String, Slot> data = new HashMap<>();
         Map<String, Object> persistentAttributes = new HashMap<>();
+        Map<String, Object> user = new HashMap<>();
+        List<Map<String, Object>> userList = new LinkedList<>();
+        Map<String, Object> currentUser = new HashMap<>();
+        Map<String, Object> drink = new HashMap<>();
+        List<Map<String, Object>> drinkList = new ArrayList<>();
 
         //Testbelegung:
-        Map<String, Object> user = new HashMap<>();
         user.put("name", "benjamin");
-        user.put("age", 22);
+        user.put("age", new BigDecimal(22));
         user.put("sex", "Männlich");
-        user.put("mass", 75);
+        user.put("mass", new BigDecimal(75));
+        currentUser.put("name", "benjamin");
+        currentUser.put("age", new BigDecimal(22));
+        currentUser.put("sex", "Männlich");
+        currentUser.put("mass", new BigDecimal(75));
+        drink.put("name", "WEIN");
+        drink.put("container", "FLASCHE");
+        drink.put("user", "benjamin");
 
-        HandlerInput testHandlerInput = ToolsTest.coustemHandlerInput(customAttributesmanager, data);
+        drinkList.add(drink);
+        userList.add(user);
 
-        System.out.println("Current User: " + User.getCurrentUser(customAttributesmanager));
+        persistentAttributes.put("drinks", drinkList);
+        persistentAttributes.put("users", userList);
+        persistentAttributes.put("currentUser", currentUser);
+
+        //Mockito Manager:
+        final AttributesManager customAttributesManager = Mockito.mock(AttributesManager.class);
+        when(customAttributesManager.getPersistentAttributes()).thenReturn(persistentAttributes);
+
+        ArgumentCaptor<Map<String, Object>> arg = ArgumentCaptor.forClass(Map.class);
+        doNothing().when(customAttributesManager).setPersistentAttributes(arg.capture());
+
+        HandlerInput testHandlerInput = ToolsTest.coustemHandlerInput(customAttributesManager, data);
         final Optional<Response> res = handler.handle(testHandlerInput);
         assertTrue(res.isPresent());
-
         final Response response = res.get();
+
         System.out.println(response.getOutputSpeech().toString());
+//        assertTrue(response.getOutputSpeech().toString().contains(Constants.ADD_DRINK_SUCCESSFUL));
     }
 
     @Test

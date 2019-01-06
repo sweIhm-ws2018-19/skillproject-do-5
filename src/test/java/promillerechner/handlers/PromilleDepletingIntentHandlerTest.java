@@ -37,7 +37,6 @@ public class PromilleDepletingIntentHandlerTest {
 
     @Test
     public void testAddADrinkToAUser() {
-        final AttributesManager customAttributesmanager = Mockito.mock(AttributesManager.class);
         Map<String, Slot> data = new HashMap<>();
         Map<String, Object> persistentAttributes = new HashMap<>();
         Map<String, Object> user = new HashMap<>();
