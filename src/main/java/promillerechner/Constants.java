@@ -30,7 +30,7 @@ public class Constants {
     //Database
     public static final String USER = "users";
     public static final String CURRENTUSER = "currentUser";
-    public static final String LIMITALERT = "limitAlert";
+    public static final String LIMIT_ALERT = "limitAlert";
 
     //Speech
     public static final String ADD_USER_TEXT = "Ok, ich habe den Benutzer angelegt.";

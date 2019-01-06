@@ -23,7 +23,6 @@ public class RemoveUserIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-
         AttributesManager attributesManager = handlerInput.getAttributesManager();
         IntentRequest request = (IntentRequest) handlerInput.getRequestEnvelope().getRequest();
 

@@ -10,9 +10,9 @@ public class LimitAlert {
 
     public static String getAlertMessageDependentByAge(AttributesManager attributesManager) {
         Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
-        persistentAttributes.putIfAbsent(Constants.LIMITALERT, false);
+        persistentAttributes.putIfAbsent(Constants.LIMIT_ALERT, false);
         String returnMessage = "";
-        if ((boolean)persistentAttributes.get(Constants.LIMITALERT)) {
+        if ((boolean)persistentAttributes.get(Constants.LIMIT_ALERT)) {
             User current =(User)persistentAttributes.get(Constants.CURRENTUSER);
             int age = current.getAge();
             float promille = User.readPromille(attributesManager);
