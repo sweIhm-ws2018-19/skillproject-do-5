@@ -66,15 +66,16 @@ public class AddDrinkIntentHandlerTest {
         persistentAttributes.put("users", userList);
         persistentAttributes.put("currentUser", currentUser);
 
-        //Mockito Manager:
-        final AttributesManager customAttributesManager = Mockito.mock(AttributesManager.class);
-        when(customAttributesManager.getPersistentAttributes()).thenReturn(persistentAttributes);
+        // Mock attributesManager
+        final AttributesManager customAttributesmanager = Mockito.mock(AttributesManager.class);
+        when(customAttributesmanager.getPersistentAttributes()).thenReturn(persistentAttributes);
 
+        // Mock setPersistentttributes and capture input
         ArgumentCaptor<Map<String, Object>> arg = ArgumentCaptor.forClass(Map.class);
-        doNothing().when(customAttributesManager).setPersistentAttributes(arg.capture());
+        doNothing().when(customAttributesmanager).setPersistentAttributes(arg.capture());
 
-        HandlerInput testHandlerInput = ToolsTest.coustemHandlerInput(customAttributesManager, data);
-        final Optional<Response> res = handler.handle(testHandlerInput);
+        HandlerInput test = ToolsTest.coustemHandlerInput(customAttributesmanager, data);
+        final Optional<Response> res = handler.handle(test);
         assertTrue(res.isPresent());
         final Response response = res.get();
 
