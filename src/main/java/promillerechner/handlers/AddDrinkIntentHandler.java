@@ -40,10 +40,15 @@ public class AddDrinkIntentHandler implements RequestHandler {
         else if (request.getDialogState() == DialogState.COMPLETED) {
             Map<String, Slot> slots = request.getIntent().getSlots();
             String drankDrinkString = slots.get("drinks").getValue();
-            Drink drankDrink = Drink.valueOf(drankDrinkString.toUpperCase());
-            drankDrink.persist(attributesManager, drankDrink.getDefaultContainer());
-            responseBuilder = responseBuilder
-                    .withSpeech(Constants.ADD_DRINK_SUCCESSFUL);
+            if (Drink.contains(drankDrinkString)) {
+                Drink drankDrink = Drink.valueOf(drankDrinkString.toUpperCase());
+                drankDrink.persist(attributesManager, drankDrink.getDefaultContainer());
+                responseBuilder = responseBuilder
+                        .withSpeech(Constants.ADD_DRINK_SUCCESSFUL);
+            } else {
+                responseBuilder = responseBuilder
+                        .withSpeech(Constants.NO_VALID_DRINK_ERROR);
+            }
         } else {
             responseBuilder = responseBuilder
                     .addDelegateDirective(request.getIntent());

@@ -38,6 +38,20 @@ public enum Drink{
     }
 
     /**
+     * Tests if a Drink is within this enum
+     * @param testDrinkName the name of the Drink to be tested
+     * @return true, if the testDrink is within this enum, false otherwise.
+     */
+    public static boolean contains(String testDrinkName) {
+        for (Drink d: Drink.values()) {
+            if (d.name().equals(testDrinkName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Generate map to make saving easy
      * @param container
      * @return [Map<String,Object>]
