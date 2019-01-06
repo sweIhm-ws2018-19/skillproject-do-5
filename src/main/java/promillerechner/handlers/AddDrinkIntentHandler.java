@@ -9,6 +9,7 @@ import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 import com.amazon.ask.response.ResponseBuilder;
 import promillerechner.Constants;
+import promillerechner.calculations.LimitAlert;
 import promillerechner.model.Drink;
 import promillerechner.model.User;
 
@@ -42,8 +43,11 @@ public class AddDrinkIntentHandler implements RequestHandler {
             String drankDrinkString = slots.get("drinks").getValue();
             Drink drankDrink = Drink.valueOf(drankDrinkString.toUpperCase());
             drankDrink.persist(attributesManager, drankDrink.getDefaultContainer());
+
+            String alertMessage = LimitAlert.getAlertMessageDependentByAge(attributesManager);
+
             responseBuilder = responseBuilder
-                    .withSpeech(Constants.ADD_DRINK_SUCCESSFUL + userString + ", " + drankDrink +  ")");
+                    .withSpeech(Constants.ADD_DRINK_SUCCESSFUL + userString + ", " + drankDrink +  ")" + alertMessage);
         } else {
             responseBuilder = responseBuilder
                     .addDelegateDirective(request.getIntent());
