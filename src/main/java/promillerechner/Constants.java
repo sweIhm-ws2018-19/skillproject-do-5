@@ -1,6 +1,7 @@
 package promillerechner;
 
 public class Constants {
+
     private Constants() {}
     //Tables
     public static final String USER_TABLE = "promillerechner";
@@ -16,6 +17,8 @@ public class Constants {
     public static final String INTENT_SELECT_USER = "SelectUserIntent";
     public static final String INTENT_DEPLET_PROMILLEVALUE = "DepletPromilleIntent";
     public static final String INTENT_READ_PROMILLE = "ReadPromilleIntent";
+    public static final String INTENT_ENABLE_LIMIT = "EnableLimitAlertIntent";
+    public static final String INTENT_DISABLE_LIMIT = "DisableLimitAlertIntent";
 
     //Keys
     public static final String KEY_ADD_USER = "name";
@@ -27,6 +30,7 @@ public class Constants {
     //Database
     public static final String USER = "users";
     public static final String CURRENTUSER = "currentUser";
+    public static final String LIMITALERT = "limitAlert";
 
     //Speech
     public static final String ADD_USER_TEXT = "Ok, ich habe den Benutzer angelegt.";

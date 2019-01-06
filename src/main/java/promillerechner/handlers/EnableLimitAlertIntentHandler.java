@@ -27,16 +27,25 @@ public class EnableLimitAlertIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
         AttributesManager attributesManager = handlerInput.getAttributesManager();
+        IntentRequest request = (IntentRequest) handlerInput.getRequestEnvelope().getRequest();
 
-        Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
-        persistentAttributes.put(Constants.LIMITALERT, true);
+        if (request.getDialogState() == DialogState.COMPLETED) {
+            Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
+            persistentAttributes.put(Constants.LIMITALERT, true);
 
-        attributesManager.savePersistentAttributes();
+            attributesManager.savePersistentAttributes();
 
-        return handlerInput.getResponseBuilder()
-                .withSpeech("Alkoholpegelwarnung aktiviert")
-                .withShouldEndSession(false)
-                .build();
+            return handlerInput.getResponseBuilder()
+                    .withSpeech("Alkoholpegelwarnung aktiviert")
+                    .withShouldEndSession(false)
+                    .build();
+        } else {
+            return handlerInput
+                    .getResponseBuilder()
+                    .addDelegateDirective(request.getIntent())
+                    .build();
+
+        }
     }
 
 }
