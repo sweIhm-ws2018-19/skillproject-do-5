@@ -16,6 +16,15 @@ public enum Container {
         this.size = size;
     }
 
+    public static boolean containsElement(String drinkContainer) {
+        for (Container c: Container.values()) {
+            if (c.name().equals(drinkContainer)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public String getName() {
         return name;
     }
