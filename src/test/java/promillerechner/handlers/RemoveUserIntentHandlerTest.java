@@ -48,7 +48,11 @@ public class RemoveUserIntentHandlerTest {
         Map<String, Object> outputAttributes = new HashMap<>();
 
         // Input
-        data.put("drinks",Slot.builder().withName("name").withValue("testuser").build());
+        data.put("name",Slot.builder().withName("name").withValue("testuser").build());
+        userMapInput.put("name","testuser");
+        userMapInput.put("age",10);
+        userMapInput.put("sex","Männlich");
+        userMapInput.put("mass",70);
         userListInput.add(userMapInput);
         persisstentAttributes.put("users",userListInput);
         // Output
