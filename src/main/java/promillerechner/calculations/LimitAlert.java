@@ -12,7 +12,7 @@ public class LimitAlert {
         Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
         persistentAttributes.putIfAbsent(Constants.LIMIT_ALERT, false);
         String returnMessage = "";
-        if ((boolean)persistentAttributes.get(Constants.LIMIT_ALERT)) {
+//        if ((boolean)persistentAttributes.get(Constants.LIMIT_ALERT)) {
             User current =(User)persistentAttributes.get(Constants.CURRENTUSER);
             int age = current.getAge();
             float promille = User.readPromille(attributesManager);
@@ -29,7 +29,7 @@ public class LimitAlert {
                 returnMessage = promille + "Promille. Geht es dir nicht gut? Trinkst du deshalb soviel? Ich bin hier zum Zuhören" +
                         "falls du jemand zum reden brauchst!";
             }
-        }
+//        }
         return returnMessage;
     }
 }
