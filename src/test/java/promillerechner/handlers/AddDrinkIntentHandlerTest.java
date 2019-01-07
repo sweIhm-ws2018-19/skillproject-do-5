@@ -44,8 +44,8 @@ public class AddDrinkIntentHandlerTest {
         List<Map<String, Object>> userList = new LinkedList<>();
         Map<String, Object> currentUser = new HashMap<>();
 
-        data.put("drinks",Slot.builder().withName("drinks").withValue("WEIN").build());
-        data.put("container",Slot.builder().withName("container").withValue("FLASCHE").build());
+        data.put("drinks", Slot.builder().withName("drinks").withValue("WEIN").build());
+        data.put("container", Slot.builder().withName("container").withValue("FLASCHE").build());
 
         //Testbelegung:
         user.put("name", "benjamin");
@@ -64,9 +64,9 @@ public class AddDrinkIntentHandlerTest {
         Map<String, Object> userOutput = new HashMap<>();
         List<Map<String, Object>> userOutputList = new LinkedList<>();
         Map<String, Object> currentUserOutput = new HashMap<>();
-        Map<String,Object> drinkOutput = new HashMap<>();
+        Map<String, Object> drinkOutput = new HashMap<>();
         List<Map<String, Object>> drinkListOutput = new ArrayList<>();
-        Map<String, Object>  outputAttributes = new HashMap<>();
+        Map<String, Object> outputAttributes = new HashMap<>();
         userOutput.put("name", "benjamin");
         userOutput.put("age", new BigDecimal(22));
         userOutput.put("sex", "Männlich");
@@ -75,15 +75,16 @@ public class AddDrinkIntentHandlerTest {
         currentUserOutput.put("age", new BigDecimal(22));
         currentUserOutput.put("sex", "Männlich");
         currentUserOutput.put("mass", new BigDecimal(75));
-        drinkOutput.put("name","WEIN");
-        drinkOutput.put("container","FLASCHE");
-        drinkOutput.put("user","benjamin");
-        drinkOutput.put("date",new Date().toString());
+        drinkOutput.put("name", "WEIN");
+        drinkOutput.put("container", "FLASCHE");
+        drinkOutput.put("user", "benjamin");
+        drinkOutput.put("date", new Date().toString());
+
         drinkListOutput.add(drinkOutput);
         userOutputList.add(userOutput);
-        outputAttributes.put("currentUser",currentUserOutput);
-        outputAttributes.put("drinks",drinkListOutput);
-        outputAttributes.put("users",userOutputList);
+        outputAttributes.put("currentUser", currentUserOutput);
+        outputAttributes.put("drinks", drinkListOutput);
+        outputAttributes.put("users", userOutputList);
 
         // Mock attributesManager
         final AttributesManager customAttributesmanager = Mockito.mock(AttributesManager.class);
@@ -93,12 +94,12 @@ public class AddDrinkIntentHandlerTest {
         ArgumentCaptor<Map<String, Object>> arg = ArgumentCaptor.forClass(Map.class);
         doNothing().when(customAttributesmanager).setPersistentAttributes(arg.capture());
 
-       HandlerInput test = ToolsTest.custemHandlerInput(customAttributesmanager, data);
+        HandlerInput test = ToolsTest.custemHandlerInput(customAttributesmanager, data);
         final Optional<Response> res = handler.handle(test);
-       assertTrue(res.isPresent());
+        assertTrue(res.isPresent());
+        assertEquals(outputAttributes, arg.getValue());
         final Response response = res.get();
-
-       assertTrue(response.getOutputSpeech().toString().contains(Constants.ADD_DRINK_SUCCESSFUL));
+        assertTrue(response.getOutputSpeech().toString().contains(Constants.ADD_DRINK_SUCCESSFUL));
     }
 
     @Test
@@ -181,8 +182,8 @@ public class AddDrinkIntentHandlerTest {
         List<Map<String, Object>> userList = new LinkedList<>();
         Map<String, Object> currentUser = new HashMap<>();
 
-        data.put("drinks",Slot.builder().withName("drinks").withValue("WEIN").build());
-        data.put("container",Slot.builder().withName("container").withValue("FASS").build());
+        data.put("drinks", Slot.builder().withName("drinks").withValue("WEIN").build());
+        data.put("container", Slot.builder().withName("container").withValue("FASS").build());
 
         //Testbelegung:
         user.put("name", "benjamin");
@@ -201,9 +202,9 @@ public class AddDrinkIntentHandlerTest {
         Map<String, Object> userOutput = new HashMap<>();
         List<Map<String, Object>> userOutputList = new LinkedList<>();
         Map<String, Object> currentUserOutput = new HashMap<>();
-        Map<String,Object> drinkOutput = new HashMap<>();
+        Map<String, Object> drinkOutput = new HashMap<>();
         List<Map<String, Object>> drinkListOutput = new ArrayList<>();
-        Map<String, Object>  outputAttributes = new HashMap<>();
+        Map<String, Object> outputAttributes = new HashMap<>();
 
         userOutput.put("name", "benjamin");
         userOutput.put("age", new BigDecimal(22));
@@ -213,16 +214,15 @@ public class AddDrinkIntentHandlerTest {
         currentUserOutput.put("age", new BigDecimal(22));
         currentUserOutput.put("sex", "Männlich");
         currentUserOutput.put("mass", new BigDecimal(75));
-        drinkOutput.put("name","WEIN");
-        drinkOutput.put("container","GLAS");
-        drinkOutput.put("user","benjamin");
-        drinkOutput.put("date",new Date().toString());
+        drinkOutput.put("name", "WEIN");
+        drinkOutput.put("container", "GLAS");
+        drinkOutput.put("user", "benjamin");
+        drinkOutput.put("date", new Date().toString());
         drinkListOutput.add(drinkOutput);
         userOutputList.add(userOutput);
-        outputAttributes.put("currentUser",currentUserOutput);
-        outputAttributes.put("drinks",drinkListOutput);
-        outputAttributes.put("users",userOutputList);
-
+        outputAttributes.put("currentUser", currentUserOutput);
+        outputAttributes.put("drinks", drinkListOutput);
+        outputAttributes.put("users", userOutputList);
 
         // Mock attributesManager
         final AttributesManager customAttributesmanager = Mockito.mock(AttributesManager.class);
@@ -235,9 +235,8 @@ public class AddDrinkIntentHandlerTest {
         HandlerInput test = ToolsTest.custemHandlerInput(customAttributesmanager, data);
         final Optional<Response> res = handler.handle(test);
         assertTrue(res.isPresent());
-        assertEquals(outputAttributes,arg.getValue());
+        assertEquals(outputAttributes, arg.getValue());
         final Response response = res.get();
-
         assertTrue(response.getOutputSpeech().toString().contains(Constants.ADD_DRINK_SUCCESSFUL));
     }
 

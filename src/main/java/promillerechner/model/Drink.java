@@ -44,7 +44,7 @@ public enum Drink{
      */
     public static boolean contains(String testDrinkName) {
         for (Drink d: Drink.values()) {
-            if (d.name().equals(testDrinkName)) {
+            if (d.name().toUpperCase().equals(testDrinkName.toUpperCase())) {
                 return true;
             }
         }
