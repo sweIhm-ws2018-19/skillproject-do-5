@@ -86,6 +86,54 @@ public class AddDrinkIntentHandlerTest {
     }
 
     @Test
+    public void testAddNotAValidDrink() {
+        Map<String, Slot> data = new HashMap<>();
+        Map<String, Object> persistentAttributes = new HashMap<>();
+        Map<String, Object> user = new HashMap<>();
+        List<Map<String, Object>> userList = new LinkedList<>();
+        Map<String, Object> currentUser = new HashMap<>();
+        Map<String, Object> drink = new HashMap<>();
+        List<Map<String, Object>> drinkList = new ArrayList<>();
+
+        //Testbelegung:
+        user.put("name", "benjamin");
+        user.put("age", new BigDecimal(22));
+        user.put("sex", "Männlich");
+        user.put("mass", new BigDecimal(75));
+        currentUser.put("name", "benjamin");
+        currentUser.put("age", new BigDecimal(22));
+        currentUser.put("sex", "Männlich");
+        currentUser.put("mass", new BigDecimal(75));
+        drink.put("name", "KETCHUP");
+        drink.put("container", "FLASCHE");
+        drink.put("user", "benjamin");
+
+        drinkList.add(drink);
+        userList.add(user);
+
+        persistentAttributes.put("drinks", drinkList);
+        persistentAttributes.put("users", userList);
+        persistentAttributes.put("currentUser", currentUser);
+
+        data.put("drinks", Slot.builder().withName("drinks").withValue("KETCHUP").build());
+        data.put("container", Slot.builder().withName("container").withValue("FLASCHE").build());
+
+        // Mock attributesManager
+        final AttributesManager customAttributesmanager = Mockito.mock(AttributesManager.class);
+        when(customAttributesmanager.getPersistentAttributes()).thenReturn(persistentAttributes);
+
+        // Mock setPersistentttributes and capture input
+        ArgumentCaptor<Map<String, Object>> arg = ArgumentCaptor.forClass(Map.class);
+        doNothing().when(customAttributesmanager).setPersistentAttributes(arg.capture());
+
+        HandlerInput test = ToolsTest.coustemHandlerInput(customAttributesmanager, data);
+        final Optional<Response> res = handler.handle(test);
+        assertTrue(res.isPresent());
+        final Response response = res.get();
+        assertTrue(response.getOutputSpeech().toString().contains(Constants.NO_VALID_DRINK_ERROR));
+    }
+
+    @Test
     public void testAddDrinkWhenNoUserIsSelected() {
         final AttributesManager customAttributesmanager = Mockito.mock(AttributesManager.class);
         Map<String, Slot> data = new HashMap<>();
