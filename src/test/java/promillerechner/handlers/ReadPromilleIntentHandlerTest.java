@@ -65,7 +65,7 @@ public class ReadPromilleIntentHandlerTest {
         ArgumentCaptor<Map<String, Object>> arg = ArgumentCaptor.forClass(Map.class);
         doNothing().when(customAttributesManager).setPersistentAttributes(arg.capture());
 
-        HandlerInput test = ToolsTest.coustemHandlerInput(customAttributesManager, new HashMap<String, Slot>());
+        HandlerInput test = ToolsTest.custemHandlerInput(customAttributesManager, new HashMap<String, Slot>());
         final Optional<Response> res = handler.handle(test);
         assertTrue(res.isPresent());
         final Response response = res.get();

@@ -9,6 +9,7 @@ import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 import com.amazon.ask.response.ResponseBuilder;
 import promillerechner.Constants;
+import promillerechner.model.Container;
 import promillerechner.model.Drink;
 import promillerechner.model.User;
 
@@ -40,9 +41,14 @@ public class AddDrinkIntentHandler implements RequestHandler {
         else if (request.getDialogState() == DialogState.COMPLETED) {
             Map<String, Slot> slots = request.getIntent().getSlots();
             String drankDrinkString = slots.get("drinks").getValue();
+            String drinkContainer = slots.get("container").getValue();
             if (Drink.contains(drankDrinkString)) {
                 Drink drankDrink = Drink.valueOf(drankDrinkString.toUpperCase());
-                drankDrink.persist(attributesManager, drankDrink.getDefaultContainer());
+                if (drinkContainer.equals("") || !Container.containsElement(drinkContainer)) {
+                    drankDrink.persist(attributesManager, drankDrink.getDefaultContainer());
+                } else {
+                    drankDrink.persist(attributesManager, Container.valueOf(drinkContainer));
+                }
                 responseBuilder = responseBuilder
                         .withSpeech(Constants.ADD_DRINK_SUCCESSFUL);
             } else {

@@ -24,5 +24,14 @@ public enum Container {
         return size;
     }
 
+    public static boolean containsElement(String eingabe)
+    {
+        for(Container c : Container.values()) {
+            if(c.toString().toLowerCase().contains(eingabe.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 

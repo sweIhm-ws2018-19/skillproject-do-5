@@ -48,11 +48,7 @@ public class RemoveUserIntentHandlerTest {
         Map<String, Object> outputAttributes = new HashMap<>();
 
         // Input
-        data.put("name",Slot.builder().withName("name").withValue("testuser").build());
-        userMapInput.put("name","testuser");
-        userMapInput.put("age",10);
-        userMapInput.put("sex","Männlich");
-        userMapInput.put("mass",70);
+        data.put("drinks",Slot.builder().withName("name").withValue("testuser").build());
         userListInput.add(userMapInput);
         persisstentAttributes.put("users",userListInput);
         // Output
@@ -66,7 +62,7 @@ public class RemoveUserIntentHandlerTest {
         ArgumentCaptor<Map<String, Object>> arg = ArgumentCaptor.forClass(Map.class);
         doNothing().when(coustemAttributesmanager).setPersistentAttributes(arg.capture());
 
-        HandlerInput test = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
+        HandlerInput test = ToolsTest.custemHandlerInput(coustemAttributesmanager, data);
         final Optional<Response> res = handler.handle(test);
         assertTrue(res.isPresent());
         final Response response = res.get();
@@ -118,7 +114,7 @@ public class RemoveUserIntentHandlerTest {
         ArgumentCaptor<Map<String, Object>> arg = ArgumentCaptor.forClass(Map.class);
         doNothing().when(coustemAttributesmanager).setPersistentAttributes(arg.capture());
 
-        HandlerInput test = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
+        HandlerInput test = ToolsTest.custemHandlerInput(coustemAttributesmanager, data);
         final Optional<Response> res = handler.handle(test);
         assertTrue(res.isPresent());
         final Response response = res.get();
@@ -133,7 +129,7 @@ public class RemoveUserIntentHandlerTest {
         Map<String, Slot> data = new HashMap<>();
         data.put("name",Slot.builder().withName("name").withValue("").build());
 
-        HandlerInput test = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
+        HandlerInput test = ToolsTest.custemHandlerInput(coustemAttributesmanager, data);
         final Optional<Response> res = handler.handle(test);
         assertTrue(res.isPresent());
         final Response response = res.get();
