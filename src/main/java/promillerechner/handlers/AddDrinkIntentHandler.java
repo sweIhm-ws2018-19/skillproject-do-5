@@ -47,7 +47,7 @@ public class AddDrinkIntentHandler implements RequestHandler {
             String alertMessage = LimitAlert.getAlertMessageDependentByAge(attributesManager);
 
             responseBuilder = responseBuilder
-                    .withSpeech(Constants.ADD_DRINK_SUCCESSFUL + userString + ", " + drankDrink +  ")" + alertMessage);
+                    .withSpeech(Constants.ADD_DRINK_SUCCESSFUL + userString + ", " + drankDrink +  ") " + alertMessage);
         } else {
             responseBuilder = responseBuilder
                     .addDelegateDirective(request.getIntent());

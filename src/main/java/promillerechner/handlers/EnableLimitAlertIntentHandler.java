@@ -22,11 +22,10 @@ public class EnableLimitAlertIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
         AttributesManager attributesManager = handlerInput.getAttributesManager();
-        IntentRequest request = (IntentRequest) handlerInput.getRequestEnvelope().getRequest();
 
         Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
         persistentAttributes.put(Constants.LIMIT_ALERT, true);
-
+        attributesManager.setPersistentAttributes(persistentAttributes);
         attributesManager.savePersistentAttributes();
 
             return handlerInput.getResponseBuilder()

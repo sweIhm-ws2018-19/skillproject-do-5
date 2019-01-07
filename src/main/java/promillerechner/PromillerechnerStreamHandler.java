@@ -35,8 +35,9 @@ public class PromillerechnerStreamHandler extends SkillStreamHandler {
                         new PromilleDepletingIntentHandler(),
                         new SelectUserIntentHandler(),
                         new EnableLimitAlertIntentHandler(),
-                        new DisableLimitAlertIntentHandler(),
-                        new AlertOnIntentHandler())
+                        new DisableLimitAlertIntentHandler())
+                .withTableName(Constants.USER_TABLE)
+                .withAutoCreateTable(true)
                 .build();
     }
 

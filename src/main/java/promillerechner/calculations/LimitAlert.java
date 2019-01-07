@@ -4,6 +4,7 @@ import com.amazon.ask.attributes.AttributesManager;
 import promillerechner.Constants;
 import promillerechner.model.User;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 public class LimitAlert {
@@ -12,9 +13,9 @@ public class LimitAlert {
         Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
         persistentAttributes.putIfAbsent(Constants.LIMIT_ALERT, false);
         String returnMessage = "";
-//        if ((boolean)persistentAttributes.get(Constants.LIMIT_ALERT)) {
-            User current =(User)persistentAttributes.get(Constants.CURRENTUSER);
-            int age = current.getAge();
+        if ((boolean)persistentAttributes.get(Constants.LIMIT_ALERT)) {
+            User.getCurrentUser(attributesManager);
+            int age = ((BigDecimal) ((Map<String, Object>) persistentAttributes.get(Constants.CURRENTUSER)).get("age")).intValue();
             float promille = User.readPromille(attributesManager);
             if (promille > 2) {
                 returnMessage = "Egal wie alt du bist, du solltest jetzt aufhören Alkohol zu trinken!";
@@ -29,7 +30,9 @@ public class LimitAlert {
                 returnMessage = promille + "Promille. Geht es dir nicht gut? Trinkst du deshalb soviel? Ich bin hier zum Zuhören" +
                         "falls du jemand zum reden brauchst!";
             }
-//        }
+        }
+        attributesManager.setPersistentAttributes(persistentAttributes);
+        attributesManager.savePersistentAttributes();
         return returnMessage;
     }
 }
