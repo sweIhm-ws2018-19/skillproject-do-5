@@ -45,7 +45,7 @@ public class AddDrinkIntentHandlerTest {
         Map<String, Object> currentUser = new HashMap<>();
 
         data.put("drinks",Slot.builder().withName("drinks").withValue("WEIN").build());
-        data.put("container",Slot.builder().withName("container").withValue("MASS").build());
+        data.put("container",Slot.builder().withName("container").withValue("FLASCHE").build());
 
         //Testbelegung:
         user.put("name", "benjamin");
@@ -76,7 +76,7 @@ public class AddDrinkIntentHandlerTest {
         currentUserOutput.put("sex", "Männlich");
         currentUserOutput.put("mass", new BigDecimal(75));
         drinkOutput.put("name","WEIN");
-        drinkOutput.put("container","MASS");
+        drinkOutput.put("container","FLASCHE");
         drinkOutput.put("user","benjamin");
         drinkOutput.put("date",new Date().toString());
         drinkListOutput.add(drinkOutput);
