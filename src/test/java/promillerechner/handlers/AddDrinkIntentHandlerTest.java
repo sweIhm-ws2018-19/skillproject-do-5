@@ -66,6 +66,9 @@ public class AddDrinkIntentHandlerTest {
         persistentAttributes.put("users", userList);
         persistentAttributes.put("currentUser", currentUser);
 
+        data.put("drinks", Slot.builder().withName("drinks").withValue("WEIN").build());
+        data.put("container", Slot.builder().withName("container").withValue("FLASCHE").build());
+
         // Mock attributesManager
         final AttributesManager customAttributesmanager = Mockito.mock(AttributesManager.class);
         when(customAttributesmanager.getPersistentAttributes()).thenReturn(persistentAttributes);
@@ -79,8 +82,7 @@ public class AddDrinkIntentHandlerTest {
         assertTrue(res.isPresent());
         final Response response = res.get();
 
-        System.out.println(response.getOutputSpeech().toString());
-//        assertTrue(response.getOutputSpeech().toString().contains(Constants.ADD_DRINK_SUCCESSFUL));
+        assertTrue(response.getOutputSpeech().toString().contains(Constants.ADD_DRINK_SUCCESSFUL));
     }
 
     @Test
