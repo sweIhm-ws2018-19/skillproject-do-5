@@ -39,7 +39,7 @@ public class HelpIntentHandlerTest {
         final AttributesManager coustemAttributesmanager = Mockito.mock(AttributesManager.class);
         Map<String, Slot> data = new HashMap<>();
 
-        final HandlerInput inputMock = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
+        final HandlerInput inputMock = ToolsTest.custemHandlerInput(coustemAttributesmanager, data);
         final Optional<Response> res = handler.handle(inputMock);
         assertTrue(res.isPresent());
         final Response response = res.get();

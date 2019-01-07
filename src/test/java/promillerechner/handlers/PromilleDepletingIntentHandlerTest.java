@@ -37,7 +37,6 @@ public class PromilleDepletingIntentHandlerTest {
 
     @Test
     public void testAddADrinkToAUser() {
-        final AttributesManager customAttributesmanager = Mockito.mock(AttributesManager.class);
         Map<String, Slot> data = new HashMap<>();
         Map<String, Object> persistentAttributes = new HashMap<>();
         Map<String, Object> user = new HashMap<>();
@@ -72,7 +71,7 @@ public class PromilleDepletingIntentHandlerTest {
         ArgumentCaptor<Map<String, Object>> arg = ArgumentCaptor.forClass(Map.class);
         doNothing().when(coustemAttributesmanager).setPersistentAttributes(arg.capture());
 
-        HandlerInput test = ToolsTest.coustemHandlerInput(coustemAttributesmanager, data);
+        HandlerInput test = ToolsTest.custemHandlerInput(coustemAttributesmanager, data);
         final Optional<Response> res = handler.handle(test);
         assertTrue(res.isPresent());
         final Response response = res.get();
