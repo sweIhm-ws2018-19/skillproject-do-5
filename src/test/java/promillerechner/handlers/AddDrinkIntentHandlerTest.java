@@ -45,7 +45,7 @@ public class AddDrinkIntentHandlerTest {
         Map<String, Object> currentUser = new HashMap<>();
 
         data.put("drinks",Slot.builder().withName("drinks").withValue("WEIN").build());
-        data.put("container",Slot.builder().withName("container").withValue("MASS").build());
+        data.put("container",Slot.builder().withName("container").withValue("FLASCHE").build());
 
         //Testbelegung:
         user.put("name", "benjamin");
@@ -76,9 +76,11 @@ public class AddDrinkIntentHandlerTest {
         currentUserOutput.put("sex", "Männlich");
         currentUserOutput.put("mass", new BigDecimal(75));
         drinkOutput.put("name","WEIN");
-        drinkOutput.put("container","MASS");
+        drinkOutput.put("container","FLASCHE");
         drinkOutput.put("user","benjamin");
-        drinkOutput.put("date",new Date().toString());
+        String dateString = new Date().toString();
+        System.out.println(dateString);
+        drinkOutput.put("date",dateString);
         drinkListOutput.add(drinkOutput);
         userOutputList.add(userOutput);
         outputAttributes.put("currentUser",currentUserOutput);
@@ -96,6 +98,7 @@ public class AddDrinkIntentHandlerTest {
         HandlerInput test = ToolsTest.coustemHandlerInput(customAttributesmanager, data);
         final Optional<Response> res = handler.handle(test);
         assertTrue(res.isPresent());
+        assertEquals(outputAttributes,arg.getValue());
         final Response response = res.get();
 
         assertTrue(response.getOutputSpeech().toString().contains(Constants.ADD_DRINK_SUCCESSFUL));
@@ -156,7 +159,6 @@ public class AddDrinkIntentHandlerTest {
         Map<String, Object> user = new HashMap<>();
         List<Map<String, Object>> userList = new LinkedList<>();
         Map<String, Object> currentUser = new HashMap<>();
-        String dateString = new Date().toString();
 
         data.put("drinks",Slot.builder().withName("drinks").withValue("WEIN").build());
         data.put("container",Slot.builder().withName("container").withValue("FASS").build());
@@ -193,6 +195,7 @@ public class AddDrinkIntentHandlerTest {
         drinkOutput.put("name","WEIN");
         drinkOutput.put("container","GLAS");
         drinkOutput.put("user","benjamin");
+        String dateString = new Date().toString();
         drinkOutput.put("date",dateString);
         drinkListOutput.add(drinkOutput);
         userOutputList.add(userOutput);
