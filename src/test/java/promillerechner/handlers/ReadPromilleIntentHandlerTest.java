@@ -54,9 +54,6 @@ public class ReadPromilleIntentHandlerTest {
         drink1.put("date", new Date().toString());
         drinks.add(drink1);
         data.put("drinks", drinks);
-
-        System.out.println(new Date().toString());
-
         // Mock attributesManager
         final AttributesManager customAttributesManager = Mockito.mock(AttributesManager.class);
         when(customAttributesManager.getPersistentAttributes()).thenReturn(data);
@@ -65,7 +62,7 @@ public class ReadPromilleIntentHandlerTest {
         ArgumentCaptor<Map<String, Object>> arg = ArgumentCaptor.forClass(Map.class);
         doNothing().when(customAttributesManager).setPersistentAttributes(arg.capture());
 
-        HandlerInput test = ToolsTest.coustemHandlerInput(customAttributesManager, new HashMap<String, Slot>());
+        HandlerInput test = ToolsTest.custemHandlerInput(customAttributesManager, new HashMap<String, Slot>());
         final Optional<Response> res = handler.handle(test);
         assertTrue(res.isPresent());
         final Response response = res.get();

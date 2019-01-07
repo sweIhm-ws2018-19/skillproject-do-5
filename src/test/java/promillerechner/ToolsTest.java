@@ -10,9 +10,9 @@ import static org.mockito.Mockito.when;
 
 public class ToolsTest {
 
-    public static HandlerInput coustemHandlerInput(AttributesManager attributesManager, Map<String, Slot> data) {
+    public static HandlerInput custemHandlerInput(AttributesManager attributesManager, Map<String, Slot> data) {
 
-        RequestEnvelope coustemRequestEnvelope = RequestEnvelope.builder()
+        RequestEnvelope custemRequestEnvelope = RequestEnvelope.builder()
                 .withRequest(IntentRequest.builder()
                         .withDialogState(DialogState.COMPLETED)
                         .withIntent(Intent.builder()
@@ -22,12 +22,12 @@ public class ToolsTest {
                 .build();
 
 
-        final HandlerInput coustemHandlerInput = Mockito.mock(HandlerInput.class);
-        when(coustemHandlerInput.getAttributesManager()).thenReturn(attributesManager);
-        when(coustemHandlerInput.getResponseBuilder()).thenReturn(new ResponseBuilder());
-        when(coustemHandlerInput.getRequestEnvelope()).thenReturn(coustemRequestEnvelope);
+        final HandlerInput custemHandlerInput = Mockito.mock(HandlerInput.class);
+        when(custemHandlerInput.getAttributesManager()).thenReturn(attributesManager);
+        when(custemHandlerInput.getResponseBuilder()).thenReturn(new ResponseBuilder());
+        when(custemHandlerInput.getRequestEnvelope()).thenReturn(custemRequestEnvelope);
 
-        return coustemHandlerInput;
+        return custemHandlerInput;
     }
 
 }
