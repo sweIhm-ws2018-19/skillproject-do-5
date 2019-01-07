@@ -79,7 +79,6 @@ public class AddDrinkIntentHandlerTest {
         drinkOutput.put("container","FLASCHE");
         drinkOutput.put("user","benjamin");
         String dateString = new Date().toString();
-        System.out.println(dateString);
         drinkOutput.put("date",dateString);
         drinkListOutput.add(drinkOutput);
         userOutputList.add(userOutput);
