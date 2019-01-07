@@ -54,9 +54,6 @@ public class ReadPromilleIntentHandlerTest {
         drink1.put("date", new Date().toString());
         drinks.add(drink1);
         data.put("drinks", drinks);
-
-        System.out.println(new Date().toString());
-
         // Mock attributesManager
         final AttributesManager customAttributesManager = Mockito.mock(AttributesManager.class);
         when(customAttributesManager.getPersistentAttributes()).thenReturn(data);
