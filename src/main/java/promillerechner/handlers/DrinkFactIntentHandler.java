@@ -8,10 +8,8 @@ import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 import com.amazon.ask.response.ResponseBuilder;
-import com.amazonaws.services.dynamodbv2.xspec.S;
 import promillerechner.Constants;
 import promillerechner.DrinkFacts;
-import promillerechner.model.Drink;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
@@ -37,7 +35,7 @@ public class DrinkFactIntentHandler implements RequestHandler {
             try {
                 speech = DrinkFacts.getDrinkFact(chosenDrink);
             } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
+                System.out.println(e);
             }
             responseBuilder = responseBuilder
                     .withSpeech(speech);
