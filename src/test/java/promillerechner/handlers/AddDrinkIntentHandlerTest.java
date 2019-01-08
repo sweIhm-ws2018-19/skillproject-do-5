@@ -75,12 +75,9 @@ public class AddDrinkIntentHandlerTest {
         drinkOutput.put("name", "WEIN");
         drinkOutput.put("container", "FLASCHE");
         drinkOutput.put("user", "benjamin");
-        drinkOutput.put("date", new Date().toString());
 
-        drinkListOutput.add(drinkOutput);
         userOutputList.add(userOutput);
         outputAttributes.put("currentUser", currentUserOutput);
-        outputAttributes.put("drinks", drinkListOutput);
         outputAttributes.put("users", userOutputList);
 
         // Mock attributesManager:
@@ -94,6 +91,9 @@ public class AddDrinkIntentHandlerTest {
         HandlerInput test = ToolsTest.custemHandlerInput(customAttributesmanager, data);
         final Optional<Response> res = handler.handle(test);
         assertTrue(res.isPresent());
+        drinkOutput.put("date", new Date().toString());
+        drinkListOutput.add(drinkOutput);
+        outputAttributes.put("drinks", drinkListOutput);
         assertEquals(outputAttributes, arg.getValue());
         final Response response = res.get();
         assertTrue(response.getOutputSpeech().toString().contains(Constants.ADD_DRINK_SUCCESSFUL));
