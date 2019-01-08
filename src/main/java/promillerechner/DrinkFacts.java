@@ -86,19 +86,19 @@ public class DrinkFacts {
         return response;
     }
 
-    private static String chooseFact(String Fact1, String Fact2, String Fact3) {
+    private static String chooseFact(String fact1, String fact2, String fact3) {
         String response;
         Random random = new Random();
         int factNumber = random.nextInt(3);
         switch (factNumber) {
             case 0:
-                response = Fact1;
+                response = fact1;
                 break;
             case 1:
-                response = Fact2;
+                response = fact2;
                 break;
             case 2:
-                response = Fact3;
+                response = fact3;
                 break;
             default:
                 response = DEFAULT_ADVICE;
