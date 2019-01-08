@@ -48,4 +48,14 @@ public class Constants {
     public static final String SELECT_USER_TEXT_FAIL = "Es gibt kein Profil mit dem Namen ";
 
     public static final String STOP_SKILL = "Tschüss!";
+
+    //Speech - LimitAlert
+    public static final String TWO_PROMILLE = "Egal wie alt du bist, du solltest jetzt aufhören Alkohol zu trinken!";
+    public static final String AGE_SIXTEEN_1 = "Du hast schon ";
+    public static final String AGE_SIXTEEN_2 = " Promille. Ich werde deine Eltern benachrichtigen!";
+    public static final String AGE_EIGHTTEEN = " Promille. Trinkst du jetzt weiter könntest du deinen Gehirnzellen schaden!" +
+         " Nicht das du den ganzen Stoff aus der Schule verlierst!";
+    public static final String AGE_TWENTYONE = " Promille. Jetzt langt's aber!";
+    public static final String ONE_POINT_FIVE_PROMILLE = " Promille. Geht es dir nicht gut? Trinkst du deshalb soviel? Ich bin hier zum Zuhören" +
+            "falls du jemand zum reden brauchst!";
 }
