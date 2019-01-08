@@ -12,6 +12,11 @@ public class DrinkFacts {
     - https://www.t-online.de/leben/id_61170444/whisky-zehn-wichtige-fakten.html
     - https://www.weinbilly.de/fakten-zum-wein-weineinsteiger
     - http://www.paradisi.de/Health_und_Ernaehrung/Getraenke/Longdrinks/News/53647.php
+    - https://www.barschule-muenchen.de/37-fakten-die-man-ueber-cocktails-kennen-sollte
+    - http://ginobility.de/blog/unterschied-zwischen-cocktails-und-longdrinks/
+    - https://www.idee-fuer-mich.de/sekt-ein-prickelndes-vergnuegen-1132.html
+    - https://wacholder-express.de/gin-tonic-blog/gin-fakten-5-dinge-die-du-noch-nicht-ueber-gin-wusstest
+    - https://www.tft-mag.com/style/spirituosen-genuss/gin-wissen-11-fakten-ueber-die-wacholderspirituose/
 
      */
     private DrinkFacts() {
@@ -55,7 +60,7 @@ public class DrinkFacts {
                         response = "Aufgrund der sorgfältigen Destillation und der Filterung gehört Wodka zu den alkoholischen Getränken, die am Ende den wenigsten Mundgeruch beziehungsweise eine Fahne verursachen.";
                         break;
                     default:
-                        response = "Trink nicht zu viel" + ofDrink + "!";
+                        response = "Trink nicht zu viel " + ofDrink + "!";
                 }
                 break;
             case "WHISKY":
@@ -70,7 +75,7 @@ public class DrinkFacts {
                         response = "Whisky gehört in Deutschland zu den beliebtesten Spirituosen. So gab es in Deutschland 2010 laut dem \"Bundesverbandes der Deutschen Spirituosen-Industrie\" rund sechs Millionen regelmäßige Whisky-Konsumenten.";
                         break;
                     default:
-                        response = "Trink nicht zu viel" + ofDrink + "!";
+                        response = "Trink nicht zu viel " + ofDrink + "!";
                 }
                 break;
             case "WEIN":
@@ -85,7 +90,7 @@ public class DrinkFacts {
                         response = "In Japan gibt es alkoholfreien Wein für Katzen. Name: Nyan Nyan Nouveau. So müssen Weinliebhaber nicht alleine trinken.";
                         break;
                     default:
-                        response = "Trink nicht zu viel" + ofDrink + "!";
+                        response = "Trink nicht zu viel " + ofDrink + "!";
                 }
                 break;
             case "GOASMASSS":
@@ -96,52 +101,52 @@ public class DrinkFacts {
                         response = "Tut mir Leid. Hierzu habe ich leider keine Fakten gefunden.";
                         break;
                     default:
-                        response = "Trink nicht zu viel" + ofDrink + "!";
+                        response = "Trink nicht zu viel " + ofDrink + "!";
                 }
                 break;
             case "LONGDRINK":
                 switch (factNumber) {
                     case 0:
-                        response = "Zu den beliebtesten Longdrinks gehören Whiskey-Cola, Wodka-Energy und Gin and Tonic";
+                        response = "Zu den beliebtesten Longdrinks gehören Whisky-Cola, Wodka-Energy und Gin Tonic";
                         break;
                     case 1:
-                        response = "e";
+                        response = "Ein Longdrink besteht aus zwei Zutaten. Ein Cocktail dagegen zu meist aus mindestens drei Zutaten.";
                         break;
                     case 2:
-                        response = "f";
+                        response = "Der Longdrink heißt Longdrink, weil ein alkoholisches Getränk mit einem nicht-alkoholischen \"verlängert\" wird.";
                         break;
                     default:
-                        response = "Trink nicht zu viel" + ofDrink + "!";
+                        response = "Trink nicht zu viel " + ofDrink + "!";
                 }
                 break;
             case "SEKT":
                 switch (factNumber) {
                     case 0:
-                        response = "e";
+                        response = "Ein Sekt wird – im Gegensatz zu normalem Wein – zweimal vergoren. Nach der ersten Gärung ist er eigentlich ein ganz normaler Wein und wird dann in Flaschen oder Fässer abgefüllt. Es kommen noch etwas Zucker und frische Hefe hinzu, sodass eine zweite Gärung einsetzt.";
                         break;
                     case 1:
-                        response = "f";
+                        response = "Der Druck in der Flasche kann den Korken beim Öffnen auf 40 bis 50 Stundenkilometer beschleunigen. Da hilft auch kein Ducken mehr, wenn man im Weg steht. Also am besten den Korken gut festhalten und langsam aus der Flasche drehen – dann wird auch niemand verletzt.";
                         break;
                     case 2:
-                        response = "g";
+                        response = "Erfunden wurde der deutsche “Sekt” eigentlich als “Champagner” in Frankreich. Viele Namen wichtiger Champagnerhersteller deuten allerdings heute noch auf die deutschen Wurzeln hin z.B. Heidsieck, Piper, Bollinger und Deutz";
                         break;
                     default:
-                        response = "Trink nicht zu viel" + ofDrink + "!";
+                        response = "Trink nicht zu viel " + ofDrink + "!";
                 }
                 break;
             case "GIN":
                 switch (factNumber) {
                     case 0:
-                        response = "f";
+                        response = "Es gibt keinen Alkohol, auf dem mehr klassische Cocktails basieren, als auf Gin.";
                         break;
                     case 1:
-                        response = "g";
+                        response = "Die größten Gin Liebhaber leben auf den Phillippinen. Dort ist der Gin-Konsum pro Person weltweit am größten.";
                         break;
                     case 2:
-                        response = "h";
+                        response = "Gin ist ein Getreide-Destillat mit Wacholdergeschmack. Laut EU-Verordnung muss Gin, wenn er sich London (Dry) Gin nennen will, mindestens 37,5 Prozent Alkohol enthalten und darf nur aus natürlichen und naturidentischen Aromastoffen bestehen. ";
                         break;
                     default:
-                        response = "Trink nicht zu viel" + ofDrink + "!";
+                        response = "Trink nicht zu viel " + ofDrink + "!";
                 }
                 break;
             default:
