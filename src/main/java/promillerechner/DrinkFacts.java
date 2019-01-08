@@ -5,7 +5,6 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 public class DrinkFacts {
-    private Random rand = SecureRandom.getInstanceStrong();
     /*
     Quellen:
     - https://www.ndr.de/ratgeber/Pils-Weizen-und-Co-Fakten-rund-ums-Bier,bier366.html
@@ -22,7 +21,7 @@ public class DrinkFacts {
     - https://www.tft-mag.com/style/spirituosen-genuss/gin-wissen-11-fakten-ueber-die-wacholderspirituose/
      */
 
-    private DrinkFacts() throws NoSuchAlgorithmException {
+    private DrinkFacts(){
     }
 
     //FACTS-Constants:
@@ -56,7 +55,7 @@ public class DrinkFacts {
      * @param ofDrink The String from which we want a Fact
      * @return the Fact of the given Drink "ofDrink"
      */
-    public static String getDrinkFact(String ofDrink) {
+    public static String getDrinkFact(String ofDrink) throws NoSuchAlgorithmException {
         String response;
         switch (ofDrink) {
             case "BIER":
@@ -89,10 +88,9 @@ public class DrinkFacts {
         return response;
     }
 
-    private static String chooseFact(String fact1, String fact2, String fact3) {
+    private static String chooseFact(String fact1, String fact2, String fact3) throws NoSuchAlgorithmException {
         String response;
-        Random random = new Random();
-        int factNumber = random.nextInt(3);
+        int factNumber = SecureRandom.getInstanceStrong().nextInt(3);
         switch (factNumber) {
             case 0:
                 response = fact1;
