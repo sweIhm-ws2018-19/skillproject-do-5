@@ -19,6 +19,7 @@ import java.util.Optional;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class AddDrinkIntentHandler implements RequestHandler {
+
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         return handlerInput.matches(intentName(Constants.INTENT_ADD_DRINK));
@@ -41,7 +42,7 @@ public class AddDrinkIntentHandler implements RequestHandler {
         else if (request.getDialogState() == DialogState.COMPLETED) {
             Map<String, Slot> slots = request.getIntent().getSlots();
             String drankDrinkString = slots.get("drinks").getValue();
-            String drinkContainer = slots.get("container").getValue();
+            String drinkContainer = slots.get("container").getValue().toUpperCase();
             if (Drink.contains(drankDrinkString)) {
                 Drink drankDrink = Drink.valueOf(drankDrinkString.toUpperCase());
                 if (drinkContainer.equals("") || !Container.containsElement(drinkContainer)) {

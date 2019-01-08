@@ -31,6 +31,7 @@ public class PromillerechnerStreamHandler extends SkillStreamHandler {
                         new CreateUserIntentHandler(),
                         new RemoveUserIntentHandler(),
                         new AddDrinkIntentHandler(),
+                        new DrinkFactIntentHandler(),
                         new ReadPromilleIntentHandler(),
                         new PromilleDepletingIntentHandler(),
                         new SelectUserIntentHandler())

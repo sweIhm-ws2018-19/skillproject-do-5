@@ -57,7 +57,7 @@ public class AddDrinkIntentHandlerTest {
         persistentAttributes.put("users", userList);
         persistentAttributes.put("currentUser", currentUser);
 
-        //Danach
+        //Danach:
         Map<String, Object> userOutput = new HashMap<>();
         List<Map<String, Object>> userOutputList = new LinkedList<>();
         Map<String, Object> currentUserOutput = new HashMap<>();
@@ -83,11 +83,11 @@ public class AddDrinkIntentHandlerTest {
         outputAttributes.put("drinks", drinkListOutput);
         outputAttributes.put("users", userOutputList);
 
-        // Mock attributesManager
+        // Mock attributesManager:
         final AttributesManager customAttributesmanager = Mockito.mock(AttributesManager.class);
         when(customAttributesmanager.getPersistentAttributes()).thenReturn(persistentAttributes);
 
-        // Mock setPersistentttributes and capture input
+        // Mock setPersistentttributes and capture input:
         ArgumentCaptor<Map<String, Object>> arg = ArgumentCaptor.forClass(Map.class);
         doNothing().when(customAttributesmanager).setPersistentAttributes(arg.capture());
 
