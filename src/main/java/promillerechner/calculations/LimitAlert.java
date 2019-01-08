@@ -9,6 +9,8 @@ import java.util.Map;
 
 public class LimitAlert {
 
+    private LimitAlert() {}
+
     public static String getAlertMessageDependentByAge(AttributesManager attributesManager, float promille) {
         Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
         String returnMessage = "";
