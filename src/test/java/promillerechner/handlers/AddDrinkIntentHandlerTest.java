@@ -10,8 +10,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import promillerechner.Constants;
 import promillerechner.ToolsTest;
-import promillerechner.handlers.AddDrinkIntentHandler;
-import promillerechner.model.User;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -22,7 +20,6 @@ import static org.mockito.Mockito.*;
 public class AddDrinkIntentHandlerTest {
 
     AddDrinkIntentHandler handler;
-    HandlerInput handlerInput = mock(HandlerInput.class);
 
     @Before
     public void setup() {
