@@ -1,4 +1,7 @@
 # Promillerechner der Gruppe Do-5 <a name="introduction"></a>
+## Dokumentation
+[Pages](https://sweihm-ws2018-19.github.io/skillproject-do-5/docs/)
+
 ## Status
 ![](https://travis-ci.org/sweIhm-ws2018-19/skillproject-do-5.svg?branch=master)
 
