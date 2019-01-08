@@ -1,8 +1,11 @@
 package promillerechner;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Random;
 
 public class DrinkFacts {
+    private Random rand = SecureRandom.getInstanceStrong();
     /*
     Quellen:
     - https://www.ndr.de/ratgeber/Pils-Weizen-und-Co-Fakten-rund-ums-Bier,bier366.html
@@ -19,7 +22,7 @@ public class DrinkFacts {
     - https://www.tft-mag.com/style/spirituosen-genuss/gin-wissen-11-fakten-ueber-die-wacholderspirituose/
      */
 
-    private DrinkFacts() {
+    private DrinkFacts() throws NoSuchAlgorithmException {
     }
 
     //FACTS-Constants:
