@@ -44,7 +44,7 @@ public class AddDrinkIntentHandler implements RequestHandler {
             Drink drankDrink = Drink.valueOf(drankDrinkString.toUpperCase());
             drankDrink.persist(attributesManager, drankDrink.getDefaultContainer());
 
-            String alertMessage = LimitAlert.getAlertMessageDependentByAge(attributesManager);
+            String alertMessage = LimitAlert.getAlertMessageDependentByAge(attributesManager, User.readPromille(attributesManager));
 
             responseBuilder = responseBuilder
                     .withSpeech(Constants.ADD_DRINK_SUCCESSFUL + userString + ", " + drankDrink +  ") " + alertMessage);

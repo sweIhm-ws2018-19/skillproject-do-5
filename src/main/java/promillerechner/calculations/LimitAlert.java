@@ -19,7 +19,7 @@ public class LimitAlert {
             "falls du jemand zum reden brauchst!";
 
 
-    public static String getAlertMessageDependentByAge(AttributesManager attributesManager) {
+    public static String getAlertMessageDependentByAge(AttributesManager attributesManager, float promille) {
         Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
 //        persistentAttributes.putIfAbsent(Constants.LIMIT_ALERT, false);
         String returnMessage = "";
@@ -29,7 +29,7 @@ public class LimitAlert {
         if (isEnabled) {
             User.getCurrentUser(attributesManager);
             int age = ((BigDecimal) ((Map<String, Object>) persistentAttributes.get(Constants.CURRENTUSER)).get("age")).intValue();
-            float promille = User.readPromille(attributesManager);
+//            float promille = User.readPromille(attributesManager);
             if (promille > 2) {
                 returnMessage = TWO_PROMILLE;
             } else if (age < 16 && promille > 0.1f) {
