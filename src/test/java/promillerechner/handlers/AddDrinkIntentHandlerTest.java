@@ -94,8 +94,7 @@ public class AddDrinkIntentHandlerTest {
         HandlerInput test = ToolsTest.custemHandlerInput(customAttributesmanager, data);
         final Optional<Response> res = handler.handle(test);
         assertTrue(res.isPresent());
-        //TODO ----------------------
-        //assertEquals(outputAttributes, arg.getValue());
+        assertEquals(outputAttributes, arg.getValue());
         final Response response = res.get();
         assertTrue(response.getOutputSpeech().toString().contains(Constants.ADD_DRINK_SUCCESSFUL));
     }
