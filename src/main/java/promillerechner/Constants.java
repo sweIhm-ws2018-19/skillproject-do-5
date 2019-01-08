@@ -39,7 +39,7 @@ public class Constants {
     public static final String REMOVE_USER_ERROR = "Nutzer ist nicht vorhanden!";
     public static final String UNKNOWN_QUERY = "Tut mir leid, das weiss ich nicht. Sage einfach Hilfe.";
     public static final String HELP = "Willkommen im Hilfemenü. Du kannst beim Promillerechner ein Profil anlegen, indem du 'Profil anlegen' sagst. Du kannst ein Profil auswählen, indem du 'wechsle Benutzer' sagst. Wenn du einen Benutzer ausgewählt hast," +
-            "kannst du mit 'Getränk hinzufügen' diesem Benutzer ein Getränk hinzufügen. Möchtest du zu einem Getränke einen spannenden Fakt wissen, so sage 'Getränkefakt'. Wenn du wissen wilst, wann du wieder nüchtern bist, so frage 'wann bin ich wieder nüchtern'.";
+            "kannst du mit 'Getränk hinzufügen' diesem Benutzer ein Getränk hinzufügen. Möchtest du zu einem Getränk einen spannenden Fakt wissen, so sage 'Getränkefakt'. Wenn du wissen wilst, wann du wieder nüchtern bist, so frage 'wann bin ich wieder nüchtern'.";
     public static final String GREETING = "Hallo, du Säufer. Willkommen beim Promillerechner. Mit diesem Skill kannst du ein Profil anlegen und " +
             "anschließend die alkoholischen Getränke eingeben, die du getrunken hast.";
     public static final String GREETING_REPROMT = "Wenn du ein Profil anlegen möchtest, sag mir bitte: Ich möchte ein Profil anlegen";
