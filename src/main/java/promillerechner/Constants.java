@@ -17,6 +17,8 @@ public class Constants {
     public static final String INTENT_DEPLET_PROMILLEVALUE = "DepletPromilleIntent";
     public static final String INTENT_READ_PROMILLE = "ReadPromilleIntent";
     public static final String INTENT_DRINK_FACT = "DrinkFactIntent";
+    public static final String INTENT_ENABLE_LIMIT = "EnableLimitAlertIntent";
+    public static final String INTENT_DISABLE_LIMIT = "DisableLimitAlertIntent";
 
     //Keys
     public static final String KEY_ADD_USER = "name";
@@ -28,6 +30,7 @@ public class Constants {
     //Database
     public static final String USER = "users";
     public static final String CURRENTUSER = "currentUser";
+    public static final String LIMIT_ALERT = "limitAlert";
 
     //Speech
     public static final String ADD_USER_TEXT = "Ok, ich habe den Benutzer angelegt.";
@@ -47,4 +50,14 @@ public class Constants {
     public static final String SELECT_USER_TEXT_FAIL = "Es gibt kein Profil mit dem Namen ";
 
     public static final String STOP_SKILL = "Tschüss!";
+
+    //Speech - LimitAlert
+    public static final String TWO_PROMILLE = " Egal wie alt du bist, du solltest jetzt aufhören Alkohol zu trinken!";
+    public static final String AGE_SIXTEEN_1 = " Du hast schon ";
+    public static final String AGE_SIXTEEN_2 = " Promille. Ich werde deine Eltern benachrichtigen!";
+    public static final String AGE_EIGHTTEEN = " Promille. Trinkst du jetzt weiter könntest du deinen Gehirnzellen schaden!" +
+         " Nicht das du den ganzen Stoff aus der Schule verlierst!";
+    public static final String AGE_TWENTYONE = " Promille. Jetzt langt's aber!";
+    public static final String ONE_POINT_FIVE_PROMILLE = " Promille. Geht es dir nicht gut? Trinkst du deshalb soviel? Ich bin hier zum Zuhören" +
+            " falls du jemand zum reden brauchst!";
 }

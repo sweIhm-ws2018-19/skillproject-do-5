@@ -10,6 +10,7 @@ import com.amazon.ask.model.Slot;
 import com.amazon.ask.response.ResponseBuilder;
 import promillerechner.Constants;
 import promillerechner.model.Container;
+import promillerechner.calculations.LimitAlert;
 import promillerechner.model.Drink;
 import promillerechner.model.User;
 
@@ -50,8 +51,12 @@ public class AddDrinkIntentHandler implements RequestHandler {
                 } else {
                     drankDrink.persist(attributesManager, Container.valueOf(drinkContainer));
                 }
+
+                String alertMessage = LimitAlert.getAlertMessageDependentByAge(attributesManager, User.readPromille(attributesManager));
+
+
                 responseBuilder = responseBuilder
-                        .withSpeech(Constants.ADD_DRINK_SUCCESSFUL);
+                        .withSpeech(Constants.ADD_DRINK_SUCCESSFUL + alertMessage);
             } else {
                 responseBuilder = responseBuilder
                         .withSpeech(Constants.NO_VALID_DRINK_ERROR);
