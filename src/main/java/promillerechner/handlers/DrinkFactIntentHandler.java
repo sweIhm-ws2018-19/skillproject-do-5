@@ -13,6 +13,7 @@ import promillerechner.Constants;
 import promillerechner.DrinkFacts;
 import promillerechner.model.Drink;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.Optional;
 
@@ -32,7 +33,12 @@ public class DrinkFactIntentHandler implements RequestHandler {
         if (request.getDialogState() == DialogState.COMPLETED) {
             Map<String, Slot> slots = request.getIntent().getSlots();
             String chosenDrink = slots.get("chosenDrink").getValue().toUpperCase();
-            String speech = DrinkFacts.getDrinkFact(chosenDrink);
+            String speech = null;
+            try {
+                speech = DrinkFacts.getDrinkFact(chosenDrink);
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
             responseBuilder = responseBuilder
                     .withSpeech(speech);
         } else {
