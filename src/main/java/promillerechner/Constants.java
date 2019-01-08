@@ -19,7 +19,6 @@ public class Constants {
     public static final String INTENT_READ_PROMILLE = "ReadPromilleIntent";
     public static final String INTENT_ENABLE_LIMIT = "EnableLimitAlertIntent";
     public static final String INTENT_DISABLE_LIMIT = "DisableLimitAlertIntent";
-    public static final String INTENT_ALERT_ON = "AlertOnIntent";
 
     //Keys
     public static final String KEY_ADD_USER = "name";
