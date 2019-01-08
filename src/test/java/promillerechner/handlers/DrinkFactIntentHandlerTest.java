@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import promillerechner.Constants;
+import promillerechner.DrinkFacts;
 import promillerechner.ToolsTest;
 
 import java.util.HashMap;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.booleanThat;
 import static org.mockito.Mockito.when;
 
 public class DrinkFactIntentHandlerTest {
@@ -23,7 +25,9 @@ public class DrinkFactIntentHandlerTest {
     DrinkFactIntentHandler handler;
 
     @Before
-    public void setup() { handler = new DrinkFactIntentHandler(); }
+    public void setup() {
+        handler = new DrinkFactIntentHandler();
+    }
 
     @Test
     public void testCanHandle() {
@@ -43,7 +47,11 @@ public class DrinkFactIntentHandlerTest {
         final Optional<Response> res = handler.handle(inputMock);
         assertTrue(res.isPresent());
         final Response response = res.get();
-        System.out.println(response.getOutputSpeech().toString());
+        String responseAsString = response.getOutputSpeech().toString();
+        boolean containsAValidFact = responseAsString.contains(DrinkFacts.WEIN_FACT_1)
+                || responseAsString.contains(DrinkFacts.WEIN_FACT_2)
+                || responseAsString.contains(DrinkFacts.WEIN_FACT_3);
+        assertTrue(containsAValidFact);
     }
 
 }
