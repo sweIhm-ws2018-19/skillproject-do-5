@@ -2,7 +2,7 @@ package promillerechner;
 
 import com.amazon.ask.attributes.AttributesManager;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import promillerechner.calculations.LimitAlert;
