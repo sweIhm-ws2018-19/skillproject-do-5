@@ -7,7 +7,6 @@ import com.amazon.ask.model.Slot;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import promillerechner.Constants;
 import promillerechner.DrinkFacts;
 import promillerechner.ToolsTest;
 
@@ -15,9 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.booleanThat;
 import static org.mockito.Mockito.when;
 
 public class DrinkFactIntentHandlerTest {

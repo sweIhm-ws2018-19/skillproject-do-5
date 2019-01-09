@@ -1,7 +1,7 @@
 package promillerechner;
 
 import com.amazon.ask.attributes.AttributesManager;
-import org.junit.Before;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
@@ -11,17 +11,10 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 public class LimitAlertTest {
-
-    @Before
-    public void initialize() {
-        AttributesManager attributesManager = Mockito.mock(AttributesManager.class);
-        Map<String, Object> persistentMap = new HashMap<>();
-    }
 
     @Test
     public void testGetLimitAlertTwoPromille() {
@@ -40,7 +33,7 @@ public class LimitAlertTest {
         doNothing().when(attributesManager).setPersistentAttributes(arg.capture());
         doNothing().when(attributesManager).savePersistentAttributes();
 
-        assertEquals(Constants.TWO_PROMILLE ,LimitAlert.getAlertMessageDependentByAge(attributesManager, 2.1f));
+        Assert.assertEquals(Constants.TWO_PROMILLE ,LimitAlert.getAlertMessageDependentByAge(attributesManager, 2.1f));
     }
 
     @Test
@@ -60,7 +53,7 @@ public class LimitAlertTest {
         doNothing().when(attributesManager).setPersistentAttributes(arg.capture());
         doNothing().when(attributesManager).savePersistentAttributes();
 
-        assertEquals(Constants.AGE_SIXTEEN_1 + 0.2 + Constants.AGE_SIXTEEN_2 ,LimitAlert.getAlertMessageDependentByAge(attributesManager, 0.2f));
+        Assert.assertEquals(Constants.AGE_SIXTEEN_1 + 0.2 + Constants.AGE_SIXTEEN_2 ,LimitAlert.getAlertMessageDependentByAge(attributesManager, 0.2f));
     }
 
     @Test
@@ -80,7 +73,7 @@ public class LimitAlertTest {
         doNothing().when(attributesManager).setPersistentAttributes(arg.capture());
         doNothing().when(attributesManager).savePersistentAttributes();
 
-        assertEquals(0.6f + Constants.AGE_EIGHTTEEN ,LimitAlert.getAlertMessageDependentByAge(attributesManager, 0.6f));
+        Assert.assertEquals(0.6f + Constants.AGE_EIGHTTEEN ,LimitAlert.getAlertMessageDependentByAge(attributesManager, 0.6f));
     }
 
     @Test
@@ -100,7 +93,7 @@ public class LimitAlertTest {
         doNothing().when(attributesManager).setPersistentAttributes(arg.capture());
         doNothing().when(attributesManager).savePersistentAttributes();
 
-        assertEquals(1.6f + Constants.AGE_TWENTYONE ,LimitAlert.getAlertMessageDependentByAge(attributesManager, 1.6f));
+        Assert.assertEquals(1.6f + Constants.AGE_TWENTYONE ,LimitAlert.getAlertMessageDependentByAge(attributesManager, 1.6f));
     }
 
     @Test
@@ -120,6 +113,6 @@ public class LimitAlertTest {
         doNothing().when(attributesManager).setPersistentAttributes(arg.capture());
         doNothing().when(attributesManager).savePersistentAttributes();
 
-        assertEquals(1.6f + Constants.ONE_POINT_FIVE_PROMILLE ,LimitAlert.getAlertMessageDependentByAge(attributesManager, 1.6f));
+        Assert.assertEquals(1.6f + Constants.ONE_POINT_FIVE_PROMILLE ,LimitAlert.getAlertMessageDependentByAge(attributesManager, 1.6f));
     }
 }
