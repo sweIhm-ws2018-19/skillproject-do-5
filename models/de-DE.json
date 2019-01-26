@@ -1,178 +1,544 @@
 {
-  "interactionModel": {
-    "languageModel": {
-      "invocationName": "promillerechner",
-      "intents": [
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": []
-        },
-        {
-          "name": "CreateUserIntent",
-          "slots": [
-            {
-              "name": "name",
-              "type": "AMAZON.DE_FIRST_NAME",
-              "samples": [
-                "{name}"
-              ]
-            },
-            {
-              "name": "age",
-              "type": "AMAZON.NUMBER",
-              "samples": [
-                "Er ist {age} Jahre alt",
-                "{age}",
-                "{age} Jahre"
-              ]
-            },
-            {
-              "name": "weight",
-              "type": "AMAZON.NUMBER",
-              "samples": [
-                "Er wiegt {weight} Kilo",
-                "{weight} Kilo",
-                "{weight}"
-              ]
-            },
-            {
-              "name": "gender",
-              "type": "AMAZON.SearchQuery",
-              "samples": [
-                "{gender}"
-              ]
-            }
-          ],
-          "samples": [
-            "Erstelle Benutzer"
-          ]
-        },
-        {
-          "name": "AMAZON.PauseIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.ResumeIntent",
-          "samples": []
-        }
-      ],
-      "types": []
-    },
-    "dialog": {
-      "intents": [
-        {
-          "name": "CreateUserIntent",
-          "confirmationRequired": false,
-          "prompts": {},
-          "slots": [
-            {
-              "name": "name",
-              "type": "AMAZON.DE_FIRST_NAME",
-              "confirmationRequired": false,
-              "elicitationRequired": true,
-              "prompts": {
-                "elicitation": "Elicit.Slot.913613661293.648590248350"
-              }
-            },
-            {
-              "name": "age",
-              "type": "AMAZON.NUMBER",
-              "confirmationRequired": false,
-              "elicitationRequired": true,
-              "prompts": {
-                "elicitation": "Elicit.Slot.497592017559.169101673027"
-              }
-            },
-            {
-              "name": "weight",
-              "type": "AMAZON.NUMBER",
-              "confirmationRequired": false,
-              "elicitationRequired": true,
-              "prompts": {
-                "elicitation": "Elicit.Slot.497592017559.149654422581"
-              }
-            },
-            {
-              "name": "gender",
-              "type": "AMAZON.SearchQuery",
-              "confirmationRequired": false,
-              "elicitationRequired": true,
-              "prompts": {
-                "elicitation": "Elicit.Slot.497592017559.1533335753055"
-              },
-              "validations": [
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "promillerechner",
+            "intents": [
                 {
-                  "type": "isInSet",
-                  "prompt": "Slot.Validation.877853770445.1313777031536.365634718717",
-                  "values": [
-                    "männlich",
-                    "weiblich"
-                  ]
+                    "name": "AMAZON.CancelIntent",
+                    "samples": [
+                        "abbruch"
+                    ]
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "stop"
+                    ]
+                },
+                {
+                    "name": "CreateUserIntent",
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.DE_FIRST_NAME",
+                            "samples": [
+                                "Mein Name ist {name}",
+                                "Der Name ist {name}",
+                                "{name}"
+                            ]
+                        },
+                        {
+                            "name": "age",
+                            "type": "AMAZON.NUMBER",
+                            "samples": [
+                                "Er ist {age} Jahre alt",
+                                "{age}",
+                                "{age} Jahre"
+                            ]
+                        },
+                        {
+                            "name": "mass",
+                            "type": "AMAZON.NUMBER",
+                            "samples": [
+                                "Er wiegt {mass} Kilo",
+                                "{mass} Kilo",
+                                "{mass}"
+                            ]
+                        },
+                        {
+                            "name": "sex",
+                            "type": "AMAZON.SearchQuery",
+                            "samples": [
+                                "Ich bin {sex}",
+                                "{sex}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "Benutzer erstellen",
+                        "Profil anlegen",
+                        "Einen Bentzer anlegen",
+                        "Ich möchte ein Profil anlegen",
+                        "Erstelle Benutzer"
+                    ]
+                },
+                {
+                    "name": "AMAZON.PauseIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ResumeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "RemoveUserIntent",
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.DE_FIRST_NAME",
+                            "samples": [
+                                "Nutzer {name}",
+                                "Der Nutzer {name}",
+                                "{name}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "Lösche Profil",
+                        "Lösche Benutzer",
+                        "Entferne Profil",
+                        "Entferne Benutzer",
+                        "Ich möchte ein Benutzer löschen",
+                        "Ich möchte ein Profil löschen",
+                        "Profil entfernen",
+                        "Profil löschen",
+                        "Benutzer entfernen",
+                        "Benutzer löschen"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "SelectUserIntent",
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.DE_FIRST_NAME",
+                            "samples": [
+                                "zu {name}",
+                                "{name}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "Wechsle Profil",
+                        "Wechsle Benutzer",
+                        "Benutzer wechseln",
+                        "Benutzer auswählen",
+                        "Profil auswählen",
+                        "Profil wechseln",
+                        "Ich wähle das Profil {name} aus",
+                        "{name} auswählen",
+                        "Ich möchte profil {name} auswählen",
+                        "ich wähle {name} aus",
+                        "{name} wählen"
+                    ]
+                },
+                {
+                    "name": "AddDrinkIntent",
+                    "slots": [
+                        {
+                            "name": "drinks",
+                            "type": "Drink",
+                            "samples": [
+                                "Ich habe {drinks} getrunken",
+                                "{drinks}"
+                            ]
+                        },
+                        {
+                            "name": "container",
+                            "type": "Container",
+                            "samples": [
+                                "{container}",
+                                "eine {container}",
+                                "ein {container}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "Trinke {drinks}",
+                        "Trinke einen {container} {drinks}",
+                        "Trinke ein {container} {drinks}",
+                        "Neues Getränk",
+                        "Ich füge ein Getränk hinzu",
+                        "Getränk hinzufügen"
+                    ]
+                },
+                {
+                    "name": "ReadPromilleIntent",
+                    "slots": [],
+                    "samples": [
+                        "Wie viel Promille habe ich"
+                    ]
+                },
+                {
+                    "name": "DepletPromilleIntent",
+                    "slots": [],
+                    "samples": [
+                        "wann darf ich wieder auto fahren",
+                        "Wann bin ich wieder nüchtern"
+                    ]
+                },
+                {
+                    "name": "EnableLimitAlertIntent",
+                    "slots": [],
+                    "samples": [
+                        "warnung an",
+                        "warnung anstellen",
+                        "warnwert einstellen",
+                        "warnwert anstellen"
+                    ]
+                },
+                {
+                    "name": "DisableLimitAlertIntent",
+                    "slots": [],
+                    "samples": [
+                        "warnung aus",
+                        "warnwert ausstellen",
+                        "warnung ausstellen",
+                        "warnung abstellen",
+                        "warnwert abstellen"
+                    ]
+                },
+                {
+                    "name": "DrinkFactIntent",
+                    "slots": [
+                        {
+                            "name": "chosenDrink",
+                            "type": "Drink",
+                            "samples": [
+                                "Zu {chosenDrink}",
+                                "{chosenDrink}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "Erzähle mir etwas zu {chosenDrink}",
+                        "Ich möchte etwas zu {chosenDrink} wissen",
+                        "Getränkefakt",
+                        "Erzähle mir einen Getränkefakt"
+                    ]
                 }
-              ]
+            ],
+            "types": [
+                {
+                    "name": "Container",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Flasche"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Shot"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Cocktailglas"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Glas"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Mass"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Drink",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Gin"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Sekt"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Longdrink"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Goasmass"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Wein"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Whiskey"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Wodka"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Bier"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "CreateUserIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.DE_FIRST_NAME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.913613661293.648590248350"
+                            }
+                        },
+                        {
+                            "name": "age",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.497592017559.169101673027"
+                            }
+                        },
+                        {
+                            "name": "mass",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.497592017559.149654422581"
+                            }
+                        },
+                        {
+                            "name": "sex",
+                            "type": "AMAZON.SearchQuery",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.497592017559.1533335753055"
+                            },
+                            "validations": [
+                                {
+                                    "type": "isInSet",
+                                    "prompt": "Slot.Validation.877853770445.1313777031536.365634718717",
+                                    "values": [
+                                        "männlich",
+                                        "weiblich"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "RemoveUserIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.DE_FIRST_NAME",
+                            "confirmationRequired": true,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "confirmation": "Confirm.Slot.1016306497168.268104611457",
+                                "elicitation": "Elicit.Slot.1016306497168.268104611457"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "SelectUserIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.DE_FIRST_NAME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.426031849270.468682429140"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "AddDrinkIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "drinks",
+                            "type": "Drink",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1034241972842.1111075266974"
+                            }
+                        },
+                        {
+                            "name": "container",
+                            "type": "Container",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.680333126850.401684699667"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "DrinkFactIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "chosenDrink",
+                            "type": "Drink",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1081411661940.1516034924133"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "SKILL_RESPONSE"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.913613661293.648590248350",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Wie ist der Name des neuen Benutzers?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.497592017559.169101673027",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Wie alt ist {name}"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.497592017559.149654422581",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Wie viel wiegt {name} ?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.497592017559.1533335753055",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Welches Geschlecht hat {name} ?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.877853770445.1313777031536.365634718717",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Das ist kein gültige Geschlecht"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Bitte sag männlich oder weiblich"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1016306497168",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Soll {name} wirklich gelöscht werden?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1016306497168.268104611457",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Welcher Nutzer soll entfernt werden?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.1016306497168.268104611457",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Willst du {name} wirklich entfernen?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1034241972842.1111075266974",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Welches alkoholische Getränk wurde getrunken?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.680333126850.401684699667",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Wie viel {drinks} hast du getrunken?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.426031849270.468682429140",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Zu welchem Benutzer möchtest du wechseln?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1081411661940.1516034924133",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Zu welchem Getränk möchtest du etwas wissen?"
+                    }
+                ]
             }
-          ]
-        }
-      ]
-    },
-    "prompts": [
-      {
-        "id": "Elicit.Slot.913613661293.648590248350",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Wie ist der Name des neuen Benutzers?"
-          }
         ]
-      },
-      {
-        "id": "Elicit.Slot.497592017559.169101673027",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Wie alt ist {name}"
-          }
-        ]
-      },
-      {
-        "id": "Elicit.Slot.497592017559.149654422581",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Wie viel wiegt {name} ?"
-          }
-        ]
-      },
-      {
-        "id": "Elicit.Slot.497592017559.1533335753055",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Welches Geschlecht hat {name} ?"
-          }
-        ]
-      },
-      {
-        "id": "Slot.Validation.877853770445.1313777031536.365634718717",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Das ist kein gültige Geschlecht"
-          },
-          {
-            "type": "PlainText",
-            "value": "Bitte sag männlich oder weiblich"
-          }
-        ]
-      }
-    ]
-  }
+    }
 }
